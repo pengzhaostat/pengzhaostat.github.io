@@ -1,0 +1,25 @@
+"Bernoulli":
+  url: https://bernoullisociety.org/publications/bernoulli-journal/
+  color: "#00539F"
+"JMLR":
+  url: https://www.jmlr.org/
+  color: "#1B365D"
+"EJS":
+  url: https://projecteuclid.org/journals/electronic-journal-of-statistics
+"TOMS":
+  url: https://dl.acm.org/journal/toms
+"TSG":
+  url: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165411
+"Biometrika":
+  url: https://academic.oup.com/biomet
+"KDD":
+  url: https://www.kdd.org/
+"PAKDD":
+  url: https://pakdd.org/
+"IEEE Big Data":
+  url: https://www.ieeebigdata.org/
+"Bayes. Anal.":
+  url: https://projecteuclid.org/journals/bayesian-analysis
+"arXiv":
+  url: https://arxiv.org/
+  color: "#B31B1B"
