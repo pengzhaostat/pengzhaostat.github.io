@@ -1,6 +1,6 @@
 ---
 layout: page
-title: research
+title: Research
 permalink: /research/
 description: Statistical foundations and scalable methods for modern complex data.
 nav: true

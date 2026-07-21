@@ -1,6 +1,6 @@
 ---
 layout: page
-title: students & mentees
+title: Students & Mentees
 permalink: /students/
 description: Current students and research mentees.
 nav: true
