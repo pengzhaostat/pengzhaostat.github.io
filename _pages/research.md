@@ -25,8 +25,6 @@ I develop variational and approximate Bayesian methods for models where conventi
 
 I am also interested in shrinkage priors, graphical models, dimension reduction, and Bayesian models that adapt to complex dependence without imposing unnecessarily rigid parametric structure.
 
-## Current support and software
+## Current support
 
 My research on **Graph Machine Learning** is supported by Microsoft Research (co-PI; 2026–present).
-
-I co-developed [covdepGE](https://cran.r-project.org/package=covdepGE), an R package for covariate-dependent Gaussian graphical modeling. The package is available on CRAN.
