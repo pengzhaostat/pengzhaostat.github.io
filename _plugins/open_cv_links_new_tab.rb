@@ -8,7 +8,7 @@ module PengZhaoSite
     html.gsub(CV_ICON_LINK) do |anchor|
       next anchor if anchor.match?(/\btarget=/i)
 
-      anchor.sub('>', ' target="_blank" rel="noopener noreferrer">')
+      %(#{anchor.delete_suffix('>')} target="_blank" rel="noopener noreferrer">)
     end
   end
 end
