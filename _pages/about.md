@@ -9,7 +9,7 @@ profile:
   image: peng_zhao.jpg
   image_circular: false
   more_info: >
-    <p><a href="mailto:pzhao@udel.edu">pzhao@udel.edu</a></p>
+    <p><a href="mailto:%70%7A%68%61%6F@%75%64%65%6C.%65%64%75">pzhao [at] udel [dot] edu</a></p>
     <p>214 Townsend Hall</p>
     <p>Newark, DE 19716</p>
 
@@ -35,4 +35,4 @@ Before joining Delaware, I was a postdoctoral researcher in Statistics at Texas 
 
 My research is currently supported in part by Microsoft Research through the **Graph Machine Learning** project, where I serve as a co-PI.
 
-For a complete record, please see my [publications](/publications/) or download my [CV](/assets/pdf/Peng_Zhao_CV.pdf).
+For a complete record, please see my [publications](/publications/) or download my [CV](https://pengzhaostat.github.io/assets/pdf/Peng_Zhao_CV.pdf).
