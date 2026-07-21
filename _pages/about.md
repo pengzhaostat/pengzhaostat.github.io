@@ -9,7 +9,7 @@ profile:
   image: peng_zhao.jpg
   image_circular: false
   more_info: >
-    <p><a href="mailto:%70%7A%68%61%6F@%75%64%65%6C.%65%64%75">pzhao [at] udel [dot] edu</a></p>
+    <p>pzhao [at] udel [dot] edu</p>
     <p>214 Townsend Hall</p>
     <p>Newark, DE 19716</p>
 
