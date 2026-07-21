@@ -1,6 +1,6 @@
 ---
 layout: page
-title: teaching
+title: Teaching
 permalink: /teaching/
 description: Courses taught at the University of Delaware, Texas A&M University, and Florida State University.
 nav: true
