@@ -1,0 +1,389 @@
+---
+---
+
+.research-highlight {
+  --rh-blue: #2563a8;
+  --rh-orange: #c85f2d;
+  --rh-green: #2f7d5c;
+  --rh-gray: #7b828a;
+  --rh-blue-soft: rgba(37, 99, 168, 0.12);
+  --rh-green-soft: rgba(47, 125, 92, 0.13);
+  margin: 2.75rem 0 3.5rem;
+  padding-top: 0.25rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.rh-header {
+  border-top: 3px solid var(--global-theme-color);
+  padding-top: 1.25rem;
+}
+
+.rh-header h2 {
+  margin-top: 0.25rem;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.18;
+}
+
+.rh-kicker {
+  margin: 0;
+  color: var(--global-theme-color);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rh-takeaway {
+  max-width: 56rem;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.rh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0 1.75rem;
+}
+
+.rh-button {
+  display: inline-flex;
+  min-width: 5.2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.75rem;
+  color: var(--global-text-color-light);
+  font-size: 0.86rem;
+}
+
+.rh-button.is-disabled::after {
+  content: "forthcoming";
+  margin-left: 0.35rem;
+  font-size: 0.68rem;
+  opacity: 0.72;
+}
+
+.rh-common-spike,
+.rh-theory {
+  margin: 1.6rem 0;
+  border-left: 3px solid var(--global-theme-color);
+  padding: 0.2rem 0 0.2rem 1rem;
+}
+
+.rh-equation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.rh-equation-grid > div {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.35rem;
+  padding: 0.75rem;
+  background: var(--global-card-bg-color, var(--global-bg-color));
+  text-align: center;
+}
+
+.rh-equation-grid span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--global-text-color-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.rh-equation-grid mjx-container {
+  margin: 0.25rem 0 !important;
+}
+
+.rh-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rh-steps li {
+  display: flex;
+  gap: 0.7rem;
+  border-top: 1px solid var(--global-divider-color);
+  padding-top: 0.9rem;
+}
+
+.rh-steps p {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.rh-step-number {
+  flex: 0 0 1.7rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.7rem;
+  text-align: center;
+}
+
+.rh-figure {
+  margin: 2.2rem 0;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.45rem;
+  padding: 1rem;
+  background: var(--global-card-bg-color, var(--global-bg-color));
+}
+
+.rh-figure figcaption {
+  margin-bottom: 0.85rem;
+  line-height: 1.55;
+}
+
+.rh-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.rh-controls {
+  display: grid;
+  grid-template-columns: max-content minmax(8rem, 1fr) max-content minmax(8rem, 1fr);
+  align-items: center;
+  gap: 0.55rem 0.8rem;
+  margin: 0.5rem 0 0.9rem;
+  font-size: 0.86rem;
+}
+
+.rh-controls label {
+  margin: 0;
+  font-weight: 600;
+}
+
+.rh-controls output {
+  display: inline-block;
+  min-width: 2.6rem;
+  color: var(--rh-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.rh-controls input[type="range"] {
+  width: 100%;
+  accent-color: var(--rh-blue);
+}
+
+.rh-formula {
+  margin: 0.6rem 0 0;
+  overflow-x: auto;
+}
+
+.rh-axis,
+.rh-grid,
+.rh-ridgeless,
+.rh-pole,
+.rh-crossover-line,
+.rh-marker {
+  vector-effect: non-scaling-stroke;
+}
+
+.rh-axis {
+  stroke: var(--global-text-color);
+  stroke-width: 1.2;
+}
+
+.rh-grid {
+  stroke: var(--global-divider-color);
+  stroke-width: 1;
+}
+
+.rh-ridgeless {
+  stroke: var(--rh-gray);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+
+.rh-pole,
+.rh-crossover-line {
+  stroke-width: 1.2;
+  stroke-dasharray: 4 5;
+}
+
+.rh-pole {
+  stroke: var(--rh-orange);
+}
+
+.rh-crossover-line {
+  stroke: var(--rh-blue);
+}
+
+.rh-endpoint-path,
+.rh-finite-path,
+.rh-shaping-path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.rh-endpoint-path {
+  stroke: var(--rh-orange);
+  stroke-width: 3;
+}
+
+.rh-finite-path,
+.rh-shaping-path {
+  stroke: var(--rh-blue);
+  stroke-width: 3.3;
+}
+
+.rh-crossover-dot {
+  fill: var(--global-bg-color);
+  stroke: var(--rh-blue);
+  stroke-width: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.rh-region {
+  opacity: 1;
+}
+
+.rh-tail-region {
+  fill: var(--rh-green-soft);
+}
+
+.rh-head-region {
+  fill: var(--rh-blue-soft);
+}
+
+.rh-label,
+.rh-axis-label,
+.rh-legend text {
+  fill: var(--global-text-color);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.rh-axis-label {
+  font-weight: 600;
+}
+
+.rh-blue-text {
+  fill: var(--rh-blue);
+  font-weight: 600;
+}
+
+.rh-green-text {
+  fill: var(--rh-green);
+  font-weight: 600;
+}
+
+.rh-mp-bulk {
+  fill: var(--rh-green-soft);
+  stroke: var(--rh-green);
+  stroke-width: 1.5;
+}
+
+.rh-stable-interval {
+  stroke: var(--rh-orange);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.rh-marker {
+  stroke-width: 2;
+}
+
+.rh-edge-marker {
+  stroke: var(--rh-orange);
+  stroke-dasharray: 5 4;
+}
+
+.rh-floor-marker {
+  stroke: var(--rh-gray);
+}
+
+.rh-star-marker {
+  stroke: var(--rh-blue);
+  stroke-width: 3;
+}
+
+.rh-operation-arrow {
+  fill: none;
+  stroke: var(--rh-blue);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+
+.rh-arrow-head {
+  fill: var(--rh-blue);
+}
+
+.rh-spectrum-bars rect {
+  fill: var(--rh-blue);
+  opacity: 0.82;
+}
+
+.rh-spectrum-bars rect.tail {
+  fill: var(--rh-green);
+  opacity: 0.66;
+}
+
+.rh-theory h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.08rem;
+}
+
+.rh-theory ul {
+  margin-bottom: 0;
+}
+
+.rh-scope {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.rh-scope > div {
+  border-top: 2px solid var(--global-divider-color);
+  padding-top: 0.75rem;
+}
+
+.rh-scope p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .rh-equation-grid,
+  .rh-steps,
+  .rh-scope {
+    grid-template-columns: 1fr;
+  }
+
+  .rh-controls {
+    grid-template-columns: 1fr minmax(8rem, 2fr);
+  }
+
+  .rh-figure {
+    padding: 0.75rem;
+  }
+
+  .rh-label,
+  .rh-axis-label,
+  .rh-legend text {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .research-highlight * {
+    scroll-behavior: auto !important;
+  }
+}
