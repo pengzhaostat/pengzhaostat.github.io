@@ -29,9 +29,9 @@ I study estimation and prediction when the number of parameters is comparable to
   <div class="rh-background">
     <h3>Why high-dimensional prediction behaves differently</h3>
     <p>When the number of parameters exceeds the sample size, fitting the training data does not by itself determine test performance. Prediction depends on the sample covariance spectrum: a small leading head can carry the recoverable signal, while many weak directions determine how the fitted inverse behaves.</p>
-    <p>A high-effective-rank tail can be weak coordinate by coordinate yet substantial in aggregate. In sample space, its Gram matrix is approximately a scalar floor,</p>
-    <p class="rh-background-equation">\[\frac{1}{n}X_T X_T^\top\approx aI_n,\qquad a=\frac{\operatorname{tr}(\Sigma_T)}{n}.\]</p>
-    <p>The head is therefore learned through a system resembling \(X_HX_H^\top/n+aI_n\), so ridgeless regression experiences implicit positive shrinkage on the signal-bearing directions. Positive ridge adds to that shrinkage. Negative ridge is the natural correction, but a stable endpoint is limited by both a pole and a tail-heavy filter shape.</p>
+    <p><strong>Notation.</strong> Let \(X\in\mathbb R^{n\times p}\) and \(y=X\beta^\star+\varepsilon\) denote the observed design and response, and let \(\Sigma=\mathbb E(xx^\top)\) be the population feature covariance. In the population eigenbasis, split the observed design as \(X=[X_H\;X_T]\), where \(H\) is the signal-bearing head and \(T\) is the weak tail. We use \(\lambda\) for population covariance eigenvalues—\(\lambda_h\) for the head and \(\lambda_T\) for the flat tail—and \(\mu\) for eigenvalues of the observed Gram matrix.</p>
+    <p class="rh-background-equation">\[K=\frac{XX^\top}{n}=K_H+K_T,\qquad K_H=\frac{X_HX_H^\top}{n},\quad K_T=\frac{X_TX_T^\top}{n}\approx aI_n,\quad a=\frac{\operatorname{tr}(\Sigma_T)}{n}.\]</p>
+    <p>A high-effective-rank tail can therefore be weak coordinate by coordinate yet create a substantial sample-space floor. The head is learned through \(K_H+aI_n\), so ridgeless regression experiences implicit positive shrinkage on signal-bearing directions. Negative ridge has the corrective sign, but its stable endpoint is limited by a pole and a tail-heavy filter shape.</p>
   </div>
 
   <div class="rh-common-spike">

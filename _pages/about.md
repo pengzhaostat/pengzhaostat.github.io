@@ -2,7 +2,6 @@
 layout: about
 title: About
 permalink: /
-subtitle: Assistant Professor of Statistics · University of Delaware
 
 profile:
   align: right

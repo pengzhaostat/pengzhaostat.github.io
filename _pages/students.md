@@ -2,7 +2,6 @@
 layout: page
 title: Students & Mentees
 permalink: /students/
-description: Students and research mentees.
 nav: true
 nav_order: 3
 ---
