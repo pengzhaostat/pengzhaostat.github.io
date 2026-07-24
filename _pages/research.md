@@ -27,6 +27,14 @@ I study estimation and prediction when the number of parameters is comparable to
     </div>
   </header>
 
+  <div class="rh-background">
+    <h3>Why high-dimensional prediction behaves differently</h3>
+    <p>When the number of parameters exceeds the sample size, fitting the training data does not by itself determine test performance. Prediction depends on the sample covariance spectrum: a small leading head can carry the recoverable signal, while many weak directions determine how the fitted inverse behaves.</p>
+    <p>A high-effective-rank tail can be weak coordinate by coordinate yet substantial in aggregate. In sample space, its Gram matrix is approximately a scalar floor,</p>
+    <p class="rh-background-equation">\[\frac{1}{n}X_T X_T^\top\approx aI_n,\qquad a=\frac{\operatorname{tr}(\Sigma_T)}{n}.\]</p>
+    <p>The head is therefore learned through a system resembling \(X_HX_H^\top/n+aI_n\), so ridgeless regression experiences implicit positive shrinkage on the signal-bearing directions. Positive ridge adds to that shrinkage. Negative ridge is the natural correction, but a stable endpoint is limited by both a pole and a tail-heavy filter shape.</p>
+  </div>
+
   <div class="rh-common-spike">
     <p><strong>Start with the common-spike model.</strong> If a flat tail has level \(\lambda_T\) and aspect ratio \(\gamma_T=d_T/n\), its many weak directions create the effective floor</p>
     <div class="rh-equation-grid" aria-label="Common-spike mechanism equations">
@@ -137,10 +145,6 @@ I study estimation and prediction when the number of parameters is comparable to
     </ul>
   </aside>
 
-  <div class="rh-scope" aria-label="Theory and experiment scope">
-    <div><strong>Theory-aligned</strong><p>Full Gaussian designs with a gapped head-tail spectrum and a head-supported signal.</p></div>
-    <div><strong>Robustness experiments</strong><p>Source-condition signals and no-gap power-law spectra. These experiments are not a proved gap-free theorem.</p></div>
-  </div>
 </section>
 
 ## Networks and relational data
