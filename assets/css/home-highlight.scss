@@ -1,0 +1,22 @@
+---
+---
+
+.home-research-callout {
+  margin: 1.35rem 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--global-theme-color) 38%, var(--global-divider-color));
+  border-left: 4px solid var(--global-theme-color);
+  border-radius: 0.4rem;
+  background: color-mix(in srgb, var(--global-theme-color) 7%, var(--global-bg-color));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.home-research-callout p {
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .home-research-callout {
+    padding: 0.85rem 0.9rem;
+  }
+}
