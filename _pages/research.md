@@ -2,7 +2,6 @@
 layout: page
 title: Research
 permalink: /research/
-description: Statistical foundations and scalable methods for modern complex data.
 nav: true
 nav_order: 1
 ---
@@ -134,16 +133,6 @@ I study estimation and prediction when the number of parameters is comparable to
       <text class="rh-axis-label" x="610" y="306">empirical spectrum</text>
     </svg>
   </figure>
-
-  <aside class="rh-theory" aria-labelledby="rh-theory-title">
-    <h3 id="rh-theory-title">What the theory establishes</h3>
-    <ul>
-      <li>In the common-spike Gaussian model, the explicit finite-time path achieves polynomial risk separation from every admissible stable negative-ridge endpoint under the paper’s scaling conditions.</li>
-      <li>With a heterogeneous head and a general high-effective-rank tail, the tail trace determines the implicit floor while its squared spectrum controls finite exposure.</li>
-      <li>The shifted operator is noncontractive; localized invariant-graph and Duhamel semigroup arguments control head-tail transfer.</li>
-      <li>A finite-grid hold-out inequality connects the certified candidates to validation selection.</li>
-    </ul>
-  </aside>
 
 </section>
 

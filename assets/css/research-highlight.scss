@@ -66,8 +66,7 @@
 }
 
 .rh-background,
-.rh-common-spike,
-.rh-theory {
+.rh-common-spike {
   margin: 1.6rem 0;
   border-left: 3px solid var(--global-theme-color);
   padding: 0.2rem 0 0.2rem 1rem;
@@ -343,15 +342,6 @@
 .rh-spectrum-bars rect.tail {
   fill: var(--rh-green);
   opacity: 0.66;
-}
-
-.rh-theory h3 {
-  margin: 0 0 0.65rem;
-  font-size: 1.08rem;
-}
-
-.rh-theory ul {
-  margin-bottom: 0;
 }
 
 @media (max-width: 760px) {
