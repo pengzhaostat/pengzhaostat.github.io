@@ -16,12 +16,12 @@ I study estimation and prediction when the number of parameters is comparable to
 
 <section class="research-highlight" id="negative-shifted-highlight" aria-labelledby="rh-title">
   <header class="rh-header">
-    <p class="rh-kicker">Research Highlight · Preprint forthcoming</p>
+    <p class="rh-kicker">Research Highlight · arXiv preprint</p>
     <h2 id="rh-title">Beyond Negative-Ridge Endpoints: Mixed-Sign Spectral Regularization via Negative-Shifted Gradient Descent</h2>
     <p class="rh-takeaway">Finite-time negative-shifted gradient descent crosses a spectral barrier that constrains every stable negative-ridge endpoint, enabling head anti-shrinkage and lower-spectrum control in one path.</p>
-    <div class="rh-actions" aria-label="Forthcoming research links">
-      <span class="rh-button is-disabled" aria-disabled="true" title="Link forthcoming">Paper</span>
-      <span class="rh-button is-disabled" aria-disabled="true" title="Link forthcoming">arXiv</span>
+    <div class="rh-actions" aria-label="Research links">
+      <a class="rh-button" href="https://arxiv.org/pdf/2607.22474" target="_blank" rel="noopener noreferrer">Paper</a>
+      <a class="rh-button" href="https://arxiv.org/abs/2607.22474" target="_blank" rel="noopener noreferrer">arXiv</a>
       <span class="rh-button is-disabled" aria-disabled="true" title="Link forthcoming">Code</span>
     </div>
   </header>
