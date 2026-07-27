@@ -64,17 +64,17 @@ I study estimation and prediction when the number of parameters is comparable to
       <desc id="rh-filter-desc">An interactive spectral-filter plot ordered from small eigenvalues on the left to large eigenvalues on the right. The orange curve is the envelope of all admissible stable negative-ridge endpoints and rises toward the stable-endpoint barrier. The blue finite-time path is smooth at its selected signed level and, for supercritical choices, can exceed the orange envelope on large signal-rich eigenvalues.</desc>
       <rect class="rh-region rh-tail-region" id="rh-tail-region" x="64" y="34" width="250" height="292"></rect>
       <rect class="rh-region rh-head-region" id="rh-head-region" x="314" y="34" width="398" height="292"></rect>
-      <line class="rh-grid" x1="64" y1="229" x2="712" y2="229"></line>
+      <line class="rh-grid" x1="64" y1="260" x2="712" y2="260"></line>
       <line class="rh-axis" x1="64" y1="326" x2="712" y2="326"></line>
       <polygon class="rh-axis-arrow" points="712,326 701,320 701,332"></polygon>
       <line class="rh-axis" x1="64" y1="34" x2="64" y2="326"></line>
-      <line class="rh-ridgeless" x1="64" y1="229" x2="712" y2="229"></line>
+      <line class="rh-ridgeless" x1="64" y1="260" x2="712" y2="260"></line>
       <line class="rh-pole" id="rh-pole" x1="147" y1="34" x2="147" y2="326"></line>
       <line class="rh-finite-pole" id="rh-finite-pole" x1="317" y1="34" x2="317" y2="326"></line>
       <path class="rh-endpoint-path" id="rh-endpoint-path" d=""></path>
       <path class="rh-finite-path" id="rh-finite-path" d=""></path>
       <line class="rh-crossover-line" id="rh-crossover-line" x1="314" y1="34" x2="314" y2="326"></line>
-      <circle class="rh-crossover-dot" id="rh-crossover-dot" cx="314" cy="229" r="5"></circle>
+      <circle class="rh-crossover-dot" id="rh-crossover-dot" cx="314" cy="260" r="5"></circle>
       <g class="rh-head-gain" id="rh-head-gain" aria-hidden="true">
         <line class="rh-head-gain-line" id="rh-head-gain-line" x1="629" y1="209" x2="629" y2="188"></line>
         <circle class="rh-gain-endpoint-dot" id="rh-gain-endpoint-dot" cx="629" cy="209" r="4"></circle>
@@ -83,10 +83,10 @@ I study estimation and prediction when the number of parameters is comparable to
       </g>
       <text class="rh-label" x="70" y="52">tail control</text>
       <text class="rh-label" x="560" y="52">head anti-shrinkage</text>
-      <text class="rh-label" x="615" y="220">ridgeless f = 1</text>
+      <text class="rh-label" x="615" y="251">ridgeless f = 1</text>
       <text class="rh-label" id="rh-pole-label" x="155" y="72">endpoint barrier μ̂⁺min</text>
       <text class="rh-label rh-blue-text" id="rh-finite-pole-label" x="325" y="91">removable μ = ν</text>
-      <text class="rh-label" id="rh-crossover-label" x="320" y="250">crossover</text>
+      <text class="rh-label" id="rh-crossover-label" x="320" y="281">crossover</text>
       <text class="rh-axis-label" x="68" y="354">small eigenvalues</text>
       <text class="rh-axis-label" x="584" y="354">large eigenvalues</text>
       <text class="rh-axis-label" x="344" y="376">empirical eigenvalue μ →</text>

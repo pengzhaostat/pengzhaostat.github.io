@@ -24,12 +24,11 @@
   const headGainLabel = root.querySelector("#rh-head-gain-label");
 
   const plot = { left: 64, right: 712, top: 34, bottom: 326 };
-  const domain = { min: 0.08, max: 3.2, yMin: 0, yMax: 3 };
+  const domain = { min: 0.08, max: 3.2, yMin: 0, yMax: 4.4 };
   const minimumPositiveEigenvalue = 0.48;
   const headProbe = 2.8;
   const xScale = (mu) => plot.left + ((mu - domain.min) / (domain.max - domain.min)) * (plot.right - plot.left);
   const yScale = (value) => plot.bottom - ((value - domain.yMin) / (domain.yMax - domain.yMin)) * (plot.bottom - plot.top);
-  const clampY = (value) => Math.min(domain.yMax, Math.max(domain.yMin, value));
 
   const finiteFilter = (mu, nu, time) => {
     const delta = mu - nu;
@@ -44,7 +43,7 @@
     const commands = [];
     for (let index = 0; index <= steps; index += 1) {
       const mu = start + ((end - start) * index) / steps;
-      const value = clampY(filter(mu));
+      const value = filter(mu);
       commands.push(`${index === 0 ? "M" : "L"} ${xScale(mu).toFixed(2)} ${yScale(value).toFixed(2)}`);
     }
     return commands.join(" ");
@@ -89,7 +88,8 @@
       "d",
       buildPath(domain.min, domain.max, 420, (mu) => finiteFilter(mu, nu, time))
     );
-    endpointPath.setAttribute("d", buildPath(minimumPositiveEigenvalue + 0.025, domain.max, 300, endpointEnvelope));
+    const endpointEntry = (minimumPositiveEigenvalue * domain.yMax) / (domain.yMax - 1);
+    endpointPath.setAttribute("d", buildPath(endpointEntry, domain.max, 300, endpointEnvelope));
 
     pole.setAttribute("x1", endpointBarrierX);
     pole.setAttribute("x2", endpointBarrierX);
@@ -111,8 +111,8 @@
     const probeX = xScale(headProbe);
     const endpointValue = endpointEnvelope(headProbe);
     const finiteValue = finiteFilter(headProbe, nu, time);
-    const endpointY = yScale(clampY(endpointValue));
-    const finiteY = yScale(clampY(finiteValue));
+    const endpointY = yScale(endpointValue);
+    const finiteY = yScale(finiteValue);
     const showsGain = finiteValue > endpointValue + 0.03;
 
     headGain.style.display = showsGain ? "" : "none";
