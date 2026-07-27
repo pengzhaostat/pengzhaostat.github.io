@@ -190,6 +190,13 @@
   accent-color: var(--rh-blue);
 }
 
+.rh-control-note {
+  margin: -0.25rem 0 0.7rem;
+  color: var(--global-text-color-light);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .rh-formula {
   margin: 0.6rem 0 0;
   overflow-x: auto;
@@ -199,7 +206,9 @@
 .rh-grid,
 .rh-ridgeless,
 .rh-pole,
+.rh-finite-pole,
 .rh-crossover-line,
+.rh-head-gain-line,
 .rh-marker {
   vector-effect: non-scaling-stroke;
 }
@@ -221,6 +230,7 @@
 }
 
 .rh-pole,
+.rh-finite-pole,
 .rh-crossover-line {
   stroke-width: 1.2;
   stroke-dasharray: 4 5;
@@ -228,6 +238,11 @@
 
 .rh-pole {
   stroke: var(--rh-orange);
+}
+
+.rh-finite-pole {
+  stroke: var(--rh-blue);
+  stroke-dasharray: 2 4;
 }
 
 .rh-crossover-line {
@@ -257,6 +272,27 @@
   stroke: var(--rh-blue);
   stroke-width: 2.4;
   vector-effect: non-scaling-stroke;
+}
+
+.rh-axis-arrow {
+  fill: var(--global-text-color);
+}
+
+.rh-head-gain-line {
+  stroke: var(--rh-blue);
+  stroke-width: 2;
+}
+
+.rh-gain-endpoint-dot {
+  fill: var(--rh-orange);
+}
+
+.rh-gain-finite-dot {
+  fill: var(--rh-blue);
+}
+
+.rh-head-gain {
+  pointer-events: none;
 }
 
 .rh-region {

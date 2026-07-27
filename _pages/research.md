@@ -51,37 +51,49 @@ I study estimation and prediction when the number of parameters is comparable to
   </ol>
 
   <figure class="rh-figure rh-interactive" data-nsgf-demo>
-    <figcaption><strong>Figure A. Endpoint versus finite path.</strong> Stable negative ridge rises toward a pole; finite-time negative-shifted gradient flow remains smooth and can cross the ridgeless level once.</figcaption>
+    <figcaption><strong>Figure A. Endpoint versus finite path.</strong> The orange curve is the limiting envelope of all admissible stable negative-ridge endpoints. The blue finite path remains smooth at its selected signed level; increasing \(\nu\) can lift its response on large, signal-rich eigenvalues above the endpoint envelope, while stopping time controls lower-spectrum exposure.</figcaption>
     <div class="rh-controls" aria-label="Interactive filter controls">
-      <label for="rh-nu">Shift \(\nu\) <output id="rh-nu-value" for="rh-nu">1.30</output></label>
+      <label for="rh-nu">Finite-path level \(\nu\) <output id="rh-nu-value" for="rh-nu">1.30</output></label>
       <input id="rh-nu" type="range" min="0.50" max="2.00" step="0.05" value="1.30">
       <label for="rh-time">Stopping time \(t\) <output id="rh-time-value" for="rh-time">0.95</output></label>
       <input id="rh-time" type="range" min="0.20" max="1.60" step="0.05" value="0.95">
     </div>
-    <svg id="rh-filter-svg" viewBox="0 0 760 390" role="img" aria-labelledby="rh-filter-title rh-filter-desc">
-      <title id="rh-filter-title">Stable endpoint and finite-time spectral filters</title>
-      <desc id="rh-filter-desc">An interactive plot of spectral filter against empirical eigenvalue. The stable negative-ridge endpoint has a vertical pole at nu. The negative-shifted finite-time path is smooth at nu and crosses the ridgeless level at one marked eigenvalue.</desc>
+    <p class="rh-control-note">Schematic normalization: orange is the admissible endpoint envelope as \(\nu\uparrow\widehat\mu_{\min}^{+}\); blue uses the selected \((\nu,t)\).</p>
+    <svg id="rh-filter-svg" viewBox="0 0 760 430" role="img" aria-labelledby="rh-filter-title rh-filter-desc">
+      <title id="rh-filter-title">Admissible stable-endpoint envelope and supercritical finite-time spectral filter</title>
+      <desc id="rh-filter-desc">An interactive spectral-filter plot ordered from small eigenvalues on the left to large eigenvalues on the right. The orange curve is the envelope of all admissible stable negative-ridge endpoints and rises toward the stable-endpoint barrier. The blue finite-time path is smooth at its selected signed level and, for supercritical choices, can exceed the orange envelope on large signal-rich eigenvalues.</desc>
       <rect class="rh-region rh-tail-region" id="rh-tail-region" x="64" y="34" width="250" height="292"></rect>
       <rect class="rh-region rh-head-region" id="rh-head-region" x="314" y="34" width="398" height="292"></rect>
       <line class="rh-grid" x1="64" y1="229" x2="712" y2="229"></line>
       <line class="rh-axis" x1="64" y1="326" x2="712" y2="326"></line>
+      <polygon class="rh-axis-arrow" points="712,326 701,320 701,332"></polygon>
       <line class="rh-axis" x1="64" y1="34" x2="64" y2="326"></line>
       <line class="rh-ridgeless" x1="64" y1="229" x2="712" y2="229"></line>
-      <line class="rh-pole" id="rh-pole" x1="320" y1="34" x2="320" y2="326"></line>
+      <line class="rh-pole" id="rh-pole" x1="147" y1="34" x2="147" y2="326"></line>
+      <line class="rh-finite-pole" id="rh-finite-pole" x1="317" y1="34" x2="317" y2="326"></line>
       <path class="rh-endpoint-path" id="rh-endpoint-path" d=""></path>
       <path class="rh-finite-path" id="rh-finite-path" d=""></path>
       <line class="rh-crossover-line" id="rh-crossover-line" x1="314" y1="34" x2="314" y2="326"></line>
       <circle class="rh-crossover-dot" id="rh-crossover-dot" cx="314" cy="229" r="5"></circle>
+      <g class="rh-head-gain" id="rh-head-gain" aria-hidden="true">
+        <line class="rh-head-gain-line" id="rh-head-gain-line" x1="629" y1="209" x2="629" y2="188"></line>
+        <circle class="rh-gain-endpoint-dot" id="rh-gain-endpoint-dot" cx="629" cy="209" r="4"></circle>
+        <circle class="rh-gain-finite-dot" id="rh-gain-finite-dot" cx="629" cy="188" r="4"></circle>
+        <text class="rh-label rh-blue-text" id="rh-head-gain-label" x="479" y="178">supercritical head gain</text>
+      </g>
       <text class="rh-label" x="70" y="52">tail control</text>
       <text class="rh-label" x="560" y="52">head anti-shrinkage</text>
       <text class="rh-label" x="615" y="220">ridgeless f = 1</text>
-      <text class="rh-label" id="rh-pole-label" x="326" y="72">pole μ = ν</text>
+      <text class="rh-label" id="rh-pole-label" x="155" y="72">endpoint barrier μ̂⁺min</text>
+      <text class="rh-label rh-blue-text" id="rh-finite-pole-label" x="325" y="91">removable μ = ν</text>
       <text class="rh-label" id="rh-crossover-label" x="320" y="250">crossover</text>
-      <text class="rh-axis-label" x="650" y="364">eigenvalue μ</text>
+      <text class="rh-axis-label" x="68" y="354">small eigenvalues</text>
+      <text class="rh-axis-label" x="584" y="354">large eigenvalues</text>
+      <text class="rh-axis-label" x="344" y="376">empirical eigenvalue μ →</text>
       <text class="rh-axis-label" x="18" y="28">filter</text>
       <g class="rh-legend" aria-hidden="true">
-        <line class="rh-endpoint-path" x1="82" y1="353" x2="112" y2="353"></line><text x="118" y="358">stable endpoint</text>
-        <line class="rh-finite-path" x1="250" y1="353" x2="280" y2="353"></line><text x="286" y="358">finite path</text>
+        <line class="rh-endpoint-path" x1="82" y1="405" x2="112" y2="405"></line><text x="118" y="410">admissible endpoint envelope</text>
+        <line class="rh-finite-path" x1="350" y1="405" x2="380" y2="405"></line><text x="386" y="410">selected finite path</text>
       </g>
     </svg>
     <p class="rh-formula">\[f_{\nu,t}(\mu)=\frac{\mu}{\mu-\nu}\left\{1-e^{-t(\mu-\nu)}\right\},\qquad f_{\nu,t}(\nu)=\nu t.\]</p>
