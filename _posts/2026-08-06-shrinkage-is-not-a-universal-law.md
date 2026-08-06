@@ -45,13 +45,15 @@ Of course, amplification also increases noise. This creates a simple competition
 
 Our result gives the exact directional rule:
 
+<div class="blog-equation" role="math" aria-label="Amplify direction i if and only if m i is greater than v i.">
 \[
-\text{Amplify direction } i
+\boxed{m_i>v_i}
 \quad\Longleftrightarrow\quad
-m_i>v_i,
+\text{amplify direction } i.
 \]
+</div>
 
-where \(m_i\) is the covariance-aligned missing-signal gain and \(v_i\) is the corresponding variance cost.
+Here, <span class="blog-inline-math" role="math">\(m_i\)</span> is the covariance-aligned missing-signal gain and <span class="blog-inline-math" role="math">\(v_i\)</span> is the corresponding variance cost.
 
 This is not a rejection of the bias–variance tradeoff. It is the bias–variance tradeoff with an important source of bias restored.
 
@@ -59,29 +61,13 @@ This is not a rejection of the bias–variance tradeoff. It is the bias–varian
 
 In aligned settings, the missing-signal gain vanishes.
 
-For example, if the population covariance is the identity, empirical row-space and null-space directions remain orthogonal for prediction. The gain \(m_i\) is then zero, while amplification still carries a positive variance cost.
+For example, if the population covariance is the identity, empirical row-space and null-space directions remain orthogonal for prediction. The gain <span class="blog-inline-math" role="math">\(m_i\)</span> is then zero, while amplification still carries a positive variance cost.
 
 The classical shrinkage conclusion is recovered.
 
 Likewise, if risk is measured using the empirical training geometry, the null-space signal contributes nothing to that risk. If the design has full column rank, there is no empirical null-space signal to compensate for.
 
 The classical setting is therefore not wrong. It is a special geometry in which the benefit of anti-shrinkage has been removed.
-
-## Why negative ridge is not the whole answer
-
-Previous research has shown that the optimal ridge penalty can sometimes be negative, particularly in highly overparameterized and anisotropic problems. Other recent work has shown that globally inflating the minimum-norm interpolator can improve prediction.
-
-These results already challenge the idea that positive shrinkage must always be optimal.
-
-But a single negative ridge parameter is a blunt tool. To amplify useful leading directions, it may also strongly amplify weak lower-spectrum directions where noise is most expensive.
-
-The desired filter is often mixed:
-
-- amplify a few informative directions;
-- leave some directions near ridgeless;
-- continue shrinking noisy lower directions.
-
-This is the motivation for the **negative-shifted gradient descent path** studied in our paper. With early stopping, negative-shifted GD can cross above the ridgeless level on a controlled leading spectral prefix without paying the full lower-spectrum variance cost of converging to a negative-ridge endpoint.
 
 ## A broader statistical rule
 
