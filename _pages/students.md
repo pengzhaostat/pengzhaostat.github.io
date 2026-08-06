@@ -15,5 +15,3 @@ nav_order: 3
 
 - **Yuanyu Li** — former M.S. student; currently Ph.D. candidate, Department of Electrical and Computer Engineering, University of Delaware
 - **Ji Shi** — former postdoctoral mentee; currently Postdoctoral Researcher, Department of Mathematics, University of Houston
-
-I enjoy working with students on problems in high-dimensional statistics, statistical learning, Bayesian computation, and network data analysis.

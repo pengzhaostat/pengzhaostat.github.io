@@ -122,30 +122,6 @@ I study estimation and prediction when the number of parameters is comparable to
     </svg>
   </figure>
 
-  <figure class="rh-figure">
-    <figcaption><strong>Figure C. Head anti-shrinkage, tail control.</strong> Mixed-sign refers to the displacement from ridgeless, \(f(\mu)-1\), not to a negative filter.</figcaption>
-    <svg viewBox="0 0 760 330" role="img" aria-labelledby="rh-spectrum-title rh-spectrum-desc">
-      <title id="rh-spectrum-title">Mixed-sign shaping of a head-tail spectrum</title>
-      <desc id="rh-spectrum-desc">Tall leading bars represent a signal-rich spectral head and many short bars a weak tail. A filter curve is above the ridgeless level over the head and below it over lower modes, with a marked crossover.</desc>
-      <line class="rh-axis" x1="68" y1="270" x2="710" y2="270"></line>
-      <g class="rh-spectrum-bars" aria-hidden="true">
-        <rect x="86" y="126" width="34" height="144"></rect><rect x="128" y="150" width="34" height="120"></rect><rect x="170" y="173" width="34" height="97"></rect>
-        <rect class="tail" x="226" y="226" width="18" height="44"></rect><rect class="tail" x="251" y="232" width="18" height="38"></rect><rect class="tail" x="276" y="236" width="18" height="34"></rect><rect class="tail" x="301" y="239" width="18" height="31"></rect><rect class="tail" x="326" y="241" width="18" height="29"></rect><rect class="tail" x="351" y="243" width="18" height="27"></rect><rect class="tail" x="376" y="245" width="18" height="25"></rect><rect class="tail" x="401" y="247" width="18" height="23"></rect><rect class="tail" x="426" y="248" width="18" height="22"></rect><rect class="tail" x="451" y="249" width="18" height="21"></rect><rect class="tail" x="476" y="250" width="18" height="20"></rect><rect class="tail" x="501" y="251" width="18" height="19"></rect><rect class="tail" x="526" y="252" width="18" height="18"></rect><rect class="tail" x="551" y="253" width="18" height="17"></rect><rect class="tail" x="576" y="254" width="18" height="16"></rect><rect class="tail" x="601" y="255" width="18" height="15"></rect><rect class="tail" x="626" y="256" width="18" height="14"></rect><rect class="tail" x="651" y="257" width="18" height="13"></rect>
-      </g>
-      <line class="rh-ridgeless" x1="68" y1="82" x2="710" y2="82"></line>
-      <path class="rh-shaping-path" d="M 82 48 C 142 45, 191 52, 232 71 S 312 106, 382 111 S 570 116, 694 120"></path>
-      <line class="rh-crossover-line" x1="252" y1="50" x2="252" y2="270"></line>
-      <circle class="rh-crossover-dot" cx="252" cy="82" r="5"></circle>
-      <text class="rh-label" x="92" y="106">signal-rich head</text>
-      <text class="rh-label" x="470" y="224">broad weak tail</text>
-      <text class="rh-label" x="520" y="72">ridgeless f = 1</text>
-      <text class="rh-label rh-blue-text" x="72" y="26">f(μ) − 1 &gt; 0: anti-shrinkage</text>
-      <text class="rh-label rh-green-text" x="390" y="145">f(μ) − 1 &lt; 0: control</text>
-      <text class="rh-label" x="260" y="101">single crossover</text>
-      <text class="rh-axis-label" x="610" y="306">empirical spectrum</text>
-    </svg>
-  </figure>
-
 </section>
 
 ## Networks and relational data

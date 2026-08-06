@@ -12,6 +12,8 @@ categories:
 giscus_comments: false
 ---
 
+<link rel="stylesheet" href="{{ '/assets/css/blog-post.css' | relative_url }}">
+
 One of the most famous lessons in statistics comes from the James–Stein phenomenon: when estimating many noisy quantities, pulling the estimates toward zero can reduce their total error.
 
 That discovery helped make **shrinkage** a central principle of modern statistics and machine learning. Ridge regression, regularization, weight decay, early stopping, and many Bayesian estimators are all built around a similar intuition:
@@ -38,30 +40,38 @@ When that population covariance is anisotropic, two directions that are orthogon
 
 Increasing its fitted coefficient can improve test prediction.
 
-Of course, amplification also increases noise. This creates a simple competition between two quantities:
+<figure class="blog-figure">
+  <img src="{{ '/assets/img/shrink_expand_schematic.png' | relative_url }}" alt="Two side-by-side contour plots. Left, Training geometry (Euclidean): concentric circular contours; the true signal beta-star sits at (1,1), the ridgeless estimate is its projection at (1,0) on the observed axis, and the note says the projection is optimal, do not amplify. Right, Prediction geometry (Sigma): tilted elliptical contours; a red amplify arrow pushes the estimate from (1,0) to an expanded optimum at (1.8,0), past the projection, because the observed axis now proxies the hidden signal." loading="lazy" width="1845" height="933">
+  <figcaption><strong>Two geometries, two verdicts.</strong> The training loss pins down only the observed (row-space) coordinate; the hidden (null-space) coordinate of the true signal \(\beta^\star\) is invisible to it. <strong>Left:</strong> under isotropic (Euclidean) prediction geometry the axes stay orthogonal, so the ridgeless projection is already optimal — amplifying it only buys variance. <strong>Right:</strong> under an anisotropic population covariance \(\Sigma\) the axes tilt, the observed direction becomes a proxy for the hidden signal, and the risk-minimizing point sits <em>past</em> the projection. Expansion, not shrinkage, is the correct move.</figcaption>
+</figure>
 
-- the **missing-signal gain** obtained by compensating for unobserved signal;
-- the **variance price** paid by amplifying training noise.
+Of course, amplification also increases noise. For each direction, this creates a simple competition between two quantities:
 
-Our result gives the exact directional rule:
+<p class="blog-math-def">\(m_i\) — the <strong>missing-signal gain</strong>: how much amplifying the observed coordinate recovers of the hidden null-space signal, measured in the population-covariance geometry.</p>
+<p class="blog-math-def">\(v_i\) — the <strong>variance price</strong>: the extra estimation noise the same amplification injects.</p>
+
+Our result gives an exact, direction-by-direction rule — amplify exactly when the gain beats the price:
 
 <div class="blog-equation" role="math" aria-label="Amplify direction i if and only if m i is greater than v i.">
 \[
-\boxed{m_i>v_i}
+\boxed{\,m_i > v_i\,}
 \quad\Longleftrightarrow\quad
 \text{amplify direction } i.
 \]
 </div>
 
-Here, <span class="blog-inline-math" role="math">\(m_i\)</span> is the covariance-aligned missing-signal gain and <span class="blog-inline-math" role="math">\(v_i\)</span> is the corresponding variance cost.
-
 This is not a rejection of the bias–variance tradeoff. It is the bias–variance tradeoff with an important source of bias restored.
+
+<figure class="blog-figure">
+  <img src="{{ '/assets/img/amplification_rule_mv.png' | relative_url }}" alt="A per-mode plot on a symmetric-log vertical axis versus empirical eigenmode rank from 1 to 200. A red curve, the missing-signal gain m_i, starts high on the left and decays; a blue curve, the variance price v_i, is roughly flat then rises on the right. On the leading modes m_i exceeds v_i and the gap is shaded as an amplify shell; the curves cross near rank 54, after which v_i exceeds m_i in the shrink regime. A pink band shows the 10 to 90 percent range across design draws." loading="lazy" width="1579" height="929">
+  <figcaption><strong>The rule, mode by mode.</strong> For a spike-plus-flat \(\Sigma\) with signal in the high-variance directions, the missing-signal gain \(m_i\) (red) beats the variance price \(v_i\) (blue) on the leading modes, opening an <em>amplify</em> shell (shaded) where the optimal spectral filter is pushed above one; past the crossover (here \(\approx\) rank 54) the ordinary shrink regime returns. Under isotropic \(\Sigma\) every \(m_i \equiv 0\), the shell is empty, and classical shrinkage is recovered.</figcaption>
+</figure>
 
 ## When does classical shrinkage return?
 
 In aligned settings, the missing-signal gain vanishes.
 
-For example, if the population covariance is the identity, empirical row-space and null-space directions remain orthogonal for prediction. The gain <span class="blog-inline-math" role="math">\(m_i\)</span> is then zero, while amplification still carries a positive variance cost.
+<p>For example, if the population covariance is the identity, empirical row-space and null-space directions remain orthogonal for prediction. The gain \(m_i\) is then zero, while amplification still carries a positive variance cost.</p>
 
 The classical shrinkage conclusion is recovered.
 
