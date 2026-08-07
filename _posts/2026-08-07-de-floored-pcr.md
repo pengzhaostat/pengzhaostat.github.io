@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?"
-date: 2026-08-07 09:00:00 -0400
+date: 2026-08-07 00:00:00 -0400
 description: Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove.
 tags:
   - statistics
