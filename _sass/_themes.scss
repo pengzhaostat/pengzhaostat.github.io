@@ -2,7 +2,7 @@
 // See docs/CUSTOMIZE.md -> "Changing theme color".
 //
 // Only the ACCENT tokens are changed here: from the al_folio_core default
-// purple (#b509ac) to a formal slate-gray, for both light and dark palettes.
+// purple (#b509ac) to a neutral gray, for both light and dark palettes.
 // All other theme tokens continue to come from the gem defaults.
 //
 // These variables drive links, nav highlights, buttons, the scroll progress
@@ -10,12 +10,12 @@
 // Tailwind layer read them), so overriding them recolors the whole site.
 
 :root {
-  --global-theme-color: #4a5568 !important; // links, accents, active nav
-  --global-hover-color: #2d3748 !important; // hover state (slightly darker)
-  --global-code-bg-color: rgba(74, 85, 104, 0.08) !important; // inline-code tint
+  --global-theme-color: #52525b !important; // links, accents, active nav
+  --global-hover-color: #3f3f46 !important; // hover state (slightly darker)
+  --global-code-bg-color: rgba(82, 82, 91, 0.08) !important; // inline-code tint
 }
 
 html[data-theme="dark"] {
-  --global-theme-color: #a0aec0 !important; // legible slate-gray on dark bg
-  --global-hover-color: #cbd5e0 !important;
+  --global-theme-color: #a1a1aa !important; // legible neutral gray on dark bg
+  --global-hover-color: #d4d4d8 !important;
 }
