@@ -35,3 +35,11 @@
   padding: 0.15rem 0 0.15rem 0.9rem;
   border-left: 3px solid var(--global-theme-color);
 }
+
+/* Centered display equations; scroll horizontally on narrow screens instead
+   of overflowing the page. */
+.blog-equation {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
