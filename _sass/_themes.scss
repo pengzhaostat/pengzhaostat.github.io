@@ -1,21 +1,76 @@
-// Local theme-token override (al-folio v1.x supported customization).
-// See docs/CUSTOMIZE.md -> "Changing theme color".
+// Local theme override. IMPORTANT: this file SHADOWS al_folio_core's
+// _sass/_themes.scss, replacing it wholesale — so it must define the COMPLETE
+// token set. A partial override drops the remaining tokens and breaks anything
+// that reads them (navbar background, borders, cards, footer, callout blocks).
 //
-// Only the ACCENT tokens are changed here: from the al_folio_core default
-// purple (#b509ac) to a neutral gray, for both light and dark palettes.
-// All other theme tokens continue to come from the gem defaults.
-//
-// These variables drive links, nav highlights, buttons, the scroll progress
-// bar, table/dropdown hovers, social-icon hovers, etc. (both main.css and the
-// Tailwind layer read them), so overriding them recolors the whole site.
+// Values below are the al_folio_core defaults, with ONLY the accent tokens
+// changed from the stock purple to a formal blue:
+//   --global-theme-color / --global-hover-color (both palettes) and the light
+//   --global-code-bg-color tint. Keep the rest in sync if the gem changes.
 
 :root {
-  --global-theme-color: #52525b !important; // links, accents, active nav
-  --global-hover-color: #3f3f46 !important; // hover state (slightly darker)
-  --global-code-bg-color: rgba(82, 82, 91, 0.08) !important; // inline-code tint
+  color-scheme: light;
+  --global-bg-color: #ffffff;
+  --global-code-bg-color: rgba(21, 101, 192, 0.06); // accent tint (was purple)
+  --global-text-color: #000000;
+  --global-text-color-light: #828282;
+  --global-theme-color: #1565c0; // ACCENT: purple -> blue
+  --global-hover-color: #0d47a1; // ACCENT hover: darker blue
+  --global-hover-text-color: #ffffff;
+  --global-footer-bg-color: #1c1c1d;
+  --global-footer-text-color: #e8e8e8;
+  --global-footer-link-color: #ffffff;
+  --global-distill-app-color: #828282;
+  --global-divider-color: rgba(0, 0, 0, 0.1);
+  --global-card-bg-color: #ffffff;
+  --global-highlight-color: #b71c1c;
+  --global-back-to-top-bg-color: rgba(0, 0, 0, 0.4);
+  --global-back-to-top-text-color: #ffffff;
+  --global-newsletter-bg-color: #ffffff;
+  --global-newsletter-text-color: #000000;
+  --global-tip-block: #42b983;
+  --global-tip-block-bg: #e2f5ec;
+  --global-tip-block-text: #215d42;
+  --global-tip-block-title: #359469;
+  --global-warning-block: #e7c000;
+  --global-warning-block-bg: #fff8d8;
+  --global-warning-block-text: #6b5900;
+  --global-warning-block-title: #b29400;
+  --global-danger-block: #c00;
+  --global-danger-block-bg: #ffe0e0;
+  --global-danger-block-text: #600;
+  --global-danger-block-title: #c00;
 }
 
 html[data-theme="dark"] {
-  --global-theme-color: #a1a1aa !important; // legible neutral gray on dark bg
-  --global-hover-color: #d4d4d8 !important;
+  color-scheme: dark;
+  --global-bg-color: #1c1c1d;
+  --global-code-bg-color: #2c3237;
+  --global-text-color: #e8e8e8;
+  --global-text-color-light: #828282;
+  --global-theme-color: #64b5f6; // ACCENT: purple -> light blue
+  --global-hover-color: #90caf9; // ACCENT hover: lighter blue
+  --global-hover-text-color: #ffffff;
+  --global-footer-bg-color: #e8e8e8;
+  --global-footer-text-color: #1c1c1d;
+  --global-footer-link-color: #000000;
+  --global-distill-app-color: #e8e8e8;
+  --global-divider-color: #424246;
+  --global-card-bg-color: #212529;
+  --global-back-to-top-bg-color: rgba(255, 255, 255, 0.5);
+  --global-back-to-top-text-color: #000000;
+  --global-newsletter-bg-color: #e8e8e8;
+  --global-newsletter-text-color: #1c1c1d;
+  --global-tip-block: #42b983;
+  --global-tip-block-bg: #215d42;
+  --global-tip-block-text: #beffe2;
+  --global-tip-block-title: #e2f5ec;
+  --global-warning-block: #e7c000;
+  --global-warning-block-bg: #6b5900;
+  --global-warning-block-text: #fff2af;
+  --global-warning-block-title: #fff8d8;
+  --global-danger-block: #c00;
+  --global-danger-block-bg: #600;
+  --global-danger-block-text: #ffb9b9;
+  --global-danger-block-title: #ffe0e0;
 }
