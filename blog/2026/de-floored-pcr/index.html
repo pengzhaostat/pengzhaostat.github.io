@@ -1,0 +1,194 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It? | Peng Zhao </title> <meta name="author" content="Peng Zhao"> <meta name="description" content="Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove."> <meta name="keywords" content="statistics, machine learning, high-dimensional statistics, Bayesian inference, network data"> <meta property="og:site_name" content="Peng Zhao"> <meta property="og:type" content="article"> <meta property="og:title" content="Peng Zhao | The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?"> <meta property="og:url" content="https://pengzhaostat.github.io/blog/2026/de-floored-pcr/"> <meta property="og:description" content="Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove."> <meta property="og:image" content="/assets/img/peng_zhao.jpg"> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?"> <meta name="twitter:description" content="Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove."> <meta name="twitter:image" content="/assets/img/peng_zhao.jpg"> <script type="application/ld+json">
+    {
+        "author":
+        {
+            "@type": "Person",
+            "name": "Peng Zhao"
+        },
+        "url": "https://pengzhaostat.github.io/blog/2026/de-floored-pcr/",
+        "@type": "BlogPosting",
+        "description": "Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove.",
+        "headline": "The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?",
+        
+        "sameAs": [null,"https://github.com/pengzhaostat","https://www.linkedin.com/in/peng-zhao-289098111","https://orcid.org/0000-0001-7043-0389","https://scholar.google.com/citations?user=eZD-yZUAAAAJ"],
+        
+        "name": "Peng Zhao",
+        "@context": "https://schema.org"
+    }
+  </script> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 1050px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%CE%A3&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://pengzhaostat.github.io/blog/2026/de-floored-pcr/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav sticky-bottom-footer"> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Peng Zhao </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/research/">Research </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/students/">Students &amp; Mentees </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?</h1> <p class="post-meta"> Created on August 07, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/statistics"> <i class="fa-solid fa-hashtag fa-sm"></i> statistics</a>   <a href="/blog/tag/machine-learning"> <i class="fa-solid fa-hashtag fa-sm"></i> machine-learning</a>   <a href="/blog/tag/high-dimensional-statistics"> <i class="fa-solid fa-hashtag fa-sm"></i> high-dimensional-statistics</a>   <a href="/blog/tag/random-matrix-theory"> <i class="fa-solid fa-hashtag fa-sm"></i> random-matrix-theory</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <link rel="stylesheet" href="/assets/css/blog-post.css"> <p>Principal component regression (PCR) is one of the oldest and simplest forms of spectral regularization. Compute the empirical principal components, keep the leading ones, discard the rest, and perform regression in the retained subspace.</p> <p>This creates a familiar question:</p> <blockquote> <p>How many principal components should we keep?</p> </blockquote> <p>For decades, this cutoff has been treated as the main regularization decision in PCR. But high-dimensional random-matrix theory has taught us something equally fundamental:</p> <blockquote> <p>The empirical eigenvalues themselves can be systematically distorted.</p> </blockquote> <p>Covariance-estimation theory responded to this fact by developing increasingly sophisticated ways to shrink, debias, or otherwise correct empirical spectra.</p> <p>PCR usually did something different. It kept the distorted eigenvalues—and inverted them.</p> <p>Our recent paper on de-floored principal component regression (dPCR) starts from this simple mismatch.</p> <h2 id="we-have-known-for-decades-that-high-dimensional-sample-spectra-are-distorted">We have known for decades that high-dimensional sample spectra are distorted</h2> <p>The story begins well before modern machine learning.</p> <p>The Marchenko–Pastur law showed in 1967 that when dimension and sample size grow together, the eigenvalues of a sample covariance matrix do not simply converge one-by-one to the population eigenvalues. Even an isotropic population covariance generates a nontrivial empirical spectral distribution.</p> <p>The spiked-covariance literature then made the phenomenon even more striking. Johnstone’s spiked model provided a canonical framework for studying a small number of population signals embedded in high-dimensional noise. Baik, Ben Arous and Péché—the BBP transition—showed that a population spike must cross a critical threshold before its empirical eigenvalue separates from the random bulk. Below that threshold, the sample spectrum does not reveal the spike as an isolated eigenvalue; above it, an outlier emerges.</p> <p>Paul subsequently characterized the asymptotic behavior of sample eigenvalues and eigenvectors in the spiked model, making precise that even separated empirical PCs can have nontrivial eigenvalue inflation and imperfect eigenvector alignment. Ledoit and Péché developed more general descriptions of how sample eigenvectors overlap with population eigenspaces, a key ingredient in understanding high-dimensional covariance estimation beyond eigenvalues alone.</p> <p>So by the late 2000s, the message was unmistakable:</p> <blockquote> <p>The empirical spectrum is not the population spectrum plus negligible noise. High-dimensional sampling systematically transforms it.</p> </blockquote> <h2 id="covariance-estimation-reacted-by-correcting-the-spectrum">Covariance estimation reacted by correcting the spectrum</h2> <p>The covariance-estimation literature did not simply accept this distortion.</p> <p>Ledoit and Wolf’s shrinkage program replaced the raw sample covariance by better-conditioned estimators. Their 2004 estimator shrinks toward a structured target, and later nonlinear shrinkage work explicitly transforms individual sample eigenvalues using random-matrix theory. The nonlinear shrinkage paper puts the motivation very clearly: when dimension is comparable to sample size, the sample covariance performs poorly, and nonlinear transformations of its empirical eigenvalues can produce substantially better covariance estimators.</p> <p>Donoho, Gavish and Johnstone pushed this perspective further in the spiked model. They derived optimal eigenvalue shrinkers under many different covariance losses and emphasized that the optimal correction depends on both sample-eigenvalue distortion and sample-eigenvector inconsistency.</p> <p>So an entire literature developed around the principle:</p> <blockquote> <p>Do not blindly trust the empirical eigenvalues. Correct them according to the statistical task.</p> </blockquote> <p>That principle is now standard in high-dimensional covariance estimation.</p> <h2 id="but-pcr-is-an-inverse-problem">But PCR is an inverse problem</h2> <p>Here is where something interesting happens.</p> <p>Suppose a predictive population component has spectral scale \(s_i\), but high-dimensional random design inflates its empirical denominator to approximately</p> <div class="blog-equation">\[ s_i + a. \]</div> <p>For covariance estimation, seeing an eigenvalue that is too large naturally suggests correcting it downward. But regression uses the eigenvalue in the <em>denominator</em>.</p> <p>Ordinary PCR effectively applies the inverse weight \(1/(s_i+a)\), so the resulting signal multiplier is approximately</p> <div class="blog-equation">\[ \frac{s_i}{s_i+a} &lt; 1. \]</div> <p>So the same upward spectral distortion that covariance estimation tries to remove becomes downward attenuation of the regression signal after inversion.</p> <p>Correcting \(s_i+a \longrightarrow s_i\) means changing the regression weight from</p> <div class="blog-equation">\[ \frac{1}{s_i+a} \quad\longrightarrow\quad \frac{1}{s_i}. \]</div> <p>In other words:</p> <blockquote> <p>Shrinking an inflated covariance eigenvalue corresponds to anti-shrinking the associated regression coefficient.</p> </blockquote> <p>This inversion changes the statistical interpretation completely.</p> <h2 id="standard-pcr-regularizes-the-support-not-the-retained-denominators">Standard PCR regularizes the support, not the retained denominators</h2> <p>Classical spectral cutoff methods solve instability by changing which singular directions are used.</p> <p>A retained empirical component receives its ordinary inverse weight \(1/\widehat\mu_i\), while a discarded component receives weight zero. PCR therefore has a binary spectral decision:</p> <div class="blog-equation">\[ \frac{1}{\widehat\mu_i} \qquad\text{or}\qquad 0. \]</div> <p>What it does not normally ask is whether the retained empirical eigenvalue \(\widehat\mu_i\) itself contains a systematic nuisance component that should be removed before inversion. This distinction is explicit in our paper: ordinary spectral cutoff changes the <em>support</em> of the inverse filter, whereas dPCR changes the <em>denominators</em> within the retained range.</p> <p>That matters because no rank choice can repair a wrong denominator. If a predictive component is retained, PCR inherits its attenuation. If it is discarded, PCR loses the component entirely. Neither choice produces the correct inverse weight.</p> <h2 id="interestingly-pcr-theory-had-already-noticed-the-upward-bias">Interestingly, PCR theory had already noticed the upward bias</h2> <p>This makes the gap even more striking.</p> <p>Hucker and Wahl studied high-dimensional PCR prediction and explicitly observed that when their effective-rank condition fails, empirical eigenvalues can exhibit substantial upward bias. Their interpretation is that this produces self-induced regularization for PCR.</p> <p>That interpretation is natural. An inflated denominator shrinks regression coefficients. Shrinkage reduces variance. In many regimes, this is beneficial.</p> <p>Recent exact high-dimensional PCR theory also fully recognizes that sample covariance eigenvalues and eigenvectors can be inconsistent. Green and Romanov derive prediction-risk formulas depending on population spectra, signal alignment and sample–population eigenvector overlaps.</p> <p>So the phenomenon was not invisible. The conceptual choice was different: spectral inflation was usually treated as something to characterize, tolerate, or even exploit as implicit regularization—not as a prediction bias that might be worth removing.</p> <p>Our paper asks when that interpretation should reverse.</p> <h2 id="when-does-self-induced-regularization-become-over-regularization">When does self-induced regularization become over-regularization?</h2> <p>Suppose the covariance has a predictive head and a very large collection of individually weak tail directions. Write the sample-space Gram matrix schematically as</p> <div class="blog-equation">\[ K = K_H + K_T. \]</div> <p>When the tail has sufficiently high effective dimension, \(K_T \approx a\,I_n\), where</p> <div class="blog-equation">\[ a = \frac{1}{n}\sum_{j&gt;h}\lambda_j. \]</div> <p>The tail therefore creates a nearly scalar spectral floor underneath the predictive head, and a head component with clean scale \(s_i\) appears roughly at \(s_i+a\).</p> <p>If \(a \ll s_i\), the attenuation \(s_i/(s_i+a)\) is negligible. This is effectively the strong-signal regime. The floor may be visible spectrally but does not matter at first order for prediction. This helps explain why the correction is absent from much traditional theory: assumptions that make the signal sufficiently strong also make the floor-induced bias asymptotically irrelevant.</p> <p>But consider instead the matched regime \(a \asymp s_i\). Now \(s_i/(s_i+a)\) is bounded away from one. The implicit shrinkage is no longer a small perturbation—it creates first-order prediction bias.</p> <p>The question becomes:</p> <blockquote> <p>Can we remove this floor without paying an equally large variance price?</p> </blockquote> <h2 id="first-spectral-mass-creates-the-bias-squared-spectral-mass-determines-the-price">First spectral mass creates the bias; squared spectral mass determines the price</h2> <p>This is the key structural result of the paper.</p> <p>Define</p> <div class="blog-equation">\[ T_1 = \sum_{j&gt;h}\lambda_j, \qquad T_2 = \sum_{j&gt;h}\lambda_j^2. \]</div> <p>The spectral floor is generated by the first tail mass, \(a = T_1/n\), so its squared attenuation effect is governed by \(T_1^2\). But the clean prediction cost associated with the tail after correction is controlled by the squared tail mass \(T_2\). Our exact risk decomposition separates precisely these two quantities: first spectral mass controls denominator inflation, while squared spectral mass controls the clean prediction cost of correction.</p> <p>This opens a regime that is easy to miss if one thinks only in terms of "large" or "small" tails. A tail can simultaneously have \(T_1\) large and \(T_2\) relatively small. The relevant condition is</p> <div class="blog-equation">\[ T_1^2 \gg n\,T_2. \]</div> <p>Equivalently, its effective dimension \(d_{\mathrm{eff}} = T_1^2/T_2\) satisfies \(d_{\mathrm{eff}} \gg n\). This is the central asymmetry:</p> <blockquote> <p>Many individually weak directions add coherently to create a large common spectral floor, but their prediction cost accumulates only through squared spectral mass.</p> </blockquote> <p>The floor can therefore be large enough to matter while remaining cheap to remove.</p> <h2 id="de-floored-pcr">De-floored PCR</h2> <p>dPCR makes the simplest possible correction. Where ordinary PCR uses \(1/\widehat\mu_i\) on retained components, dPCR uses</p> <div class="blog-equation">\[ \frac{1}{\widehat\mu_i - a_0}, \]</div> <p>where \(a_0\) estimates the spectral floor. Rank and floor correction play different roles:</p> <ul> <li>the <strong>rank</strong> determines which empirical directions are trusted;</li> <li>the <strong>floor correction</strong> determines how strongly the trusted directions should be inverted.</li> </ul> <p>In the sharp-floor regime, the floor can be estimated from the same empirical spectrum using the lower spectral cluster. Our theory shows that this plug-in correction attains the oracle dPCR rate at a prespecified retained rank. More importantly, in the matched sharp-floor asymptotic regime, the prediction risk of dPCR becomes negligible relative to the best ordinary PCR risk over <em>all possible ranks</em>.</p> <p>So the gain cannot be explained by better rank selection.</p> <blockquote> <p>The missing regularization axis is denominator correction.</p> </blockquote> <h2 id="why-bbp-and-optimal-covariance-shrinkage-did-not-already-solve-this-problem">Why BBP and optimal covariance shrinkage did not already solve this problem</h2> <p>There are two important distinctions.</p> <p>First, the BBP literature primarily asks when spectral signal separates from random noise and how empirical eigenvalues and eigenvectors behave. It characterizes the distortion; it is not itself a regression correction rule.</p> <p>Second, covariance shrinkage optimizes covariance-estimation losses. Regression prediction is a different decision problem. After inversion, an eigenvalue correction changes signal recovery and variance in a different way. The optimal correction depends on the regression signal and prediction geometry, not merely on estimating the covariance matrix accurately. Donoho, Gavish and Johnstone already demonstrate more generally that the optimal spectral shrinker depends strongly on the loss being optimized.</p> <p>So dPCR is not simply “apply covariance shrinkage and then run regression.” Instead, it asks directly: when is empirical spectral inflation creating harmful regression attenuation, and when is removing it beneficial for prediction risk?</p> <h2 id="the-boundary-matters">The boundary matters</h2> <p>The paper does not claim that one should always subtract a spectral mean.</p> <p>In the ordinary proportional Marchenko–Pastur regime, the empirical bulk has persistent relative width. A single scalar floor does not capture the full distortion. Our fixed-aspect analysis shows exactly this limitation: positive denominator correction can still improve PCR, but the risk-optimal correction generally differs from simply subtracting the bulk mean.</p> <p>So the dPCR theory identifies a particular missing regime:</p> <div class="blog-equation">\[ \boxed{\begin{array}{c} \text{floor large enough to matter} \\[3pt] +\ \text{floor sharp enough to estimate} \\[3pt] +\ \text{correction cheap enough to apply} \end{array}} \]</div> <p>Outside that regime, richer spectral corrections may be needed.</p> <h2 id="a-familiar-phenomenon-viewed-through-an-inverse">A familiar phenomenon viewed through an inverse</h2> <p>This is perhaps the most interesting part of the story.</p> <p>Random-matrix theory told us that the empirical spectrum is distorted. Spiked-covariance theory told us when signal separates from the bulk and how sample PCs become inconsistent. Covariance-estimation theory told us not to trust raw sample eigenvalues and developed sophisticated ways to correct them.</p> <p>PCR nevertheless continued to use those eigenvalues primarily through a spectral cutoff: retain \(1/\widehat\mu_i\), or replace it by zero.</p> <p>Our result suggests another possibility:</p> <blockquote> <p>Before inverting an empirical eigenvalue, ask whether part of it is an endogenous spectral floor that should not be there.</p> </blockquote> <p>The same spectral inflation that looks like a covariance-estimation error becomes a coefficient attenuation after inversion. And the same high-dimensional tail that looks like beneficial implicit regularization in one regime can become removable over-regularization in another.</p> <p>That leads to a broader statistical principle:</p> <blockquote> <p>A regularization effect should not be judged only by how much variance it removes. We should also ask what systematic bias it creates, whether that bias is identifiable, and whether removing it costs less than leaving it in place.</p> </blockquote> <p>For dPCR, that comparison has an unusually clean form:</p> <div class="blog-equation">\[ \boxed{\begin{array}{c} \text{first spectral mass creates the floor;} \\[3pt] \text{squared spectral mass determines its correction cost.} \end{array}} \]</div> <p>The spectral floor was not unknown. What was missing was the regime in which, after inversion, it becomes a first-order but cheaply removable prediction bias.</p> <p>Paper: <a href="https://arxiv.org/abs/2607.16638" rel="external nofollow noopener" target="_blank"><em>De-floored Principal Component Regression: When Rank Selection Alone Is Insufficient for Prediction</em></a>.</p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/shrinkage-is-not-a-universal-law/">Shrinkage Is Not a Universal Law</a> </li> </ul> </div> </div> <footer class="sticky-bottom mt-5" role="contentinfo"> <div class="container"> © Copyright 2026 Peng Zhao. Built with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> and hosted by <a href="https://pages.github.com/" rel="external nofollow noopener" target="_blank">GitHub Pages</a>. Last updated: August 07, 2026. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5P27QER41"></script> <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-Q5P27QER41");
+</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-research",
+          title: "Research",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/research/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-students-amp-mentees",
+          title: "Students &amp; Mentees",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/students/";
+          },
+        },{id: "nav-teaching",
+          title: "Teaching",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Download Peng Zhao&#39;s curriculum vitae.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "post-the-spectrum-was-known-to-be-biased-why-did-pcr-keep-inverting-it",
+        
+          title: "The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?...",
+        
+        description: "Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/de-floored-pcr/";
+          
+        },
+      },{id: "post-shrinkage-is-not-a-universal-law",
+        
+          title: "Shrinkage Is Not a Universal Law",
+        
+        description: "Why anisotropic prediction geometry can make expansion, rather than shrinkage, the right correction in overparameterized regression.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/shrinkage-is-not-a-universal-law/";
+          
+        },
+      },{id: "news-presented-at-and-chaired-a-session-for-the-2026-icsa-applied-statistics-symposium-in-arlington-virginia",
+          title: 'Presented at and chaired a session for the 2026 ICSA Applied Statistics Symposium...',
+          description: "",
+          section: "News",},{id: "news-our-paper-an-approximate-bayesian-approach-to-covariate-dependent-graphical-modeling-was-accepted-by-bernoulli",
+          title: 'Our paper **An Approximate Bayesian Approach to Covariate-dependent Graphical Modeling** was accepted by...',
+          description: "",
+          section: "News",},{id: "news-new-preprint-de-floored-principal-component-regression-when-rank-selection-alone-is-insufficient-for-prediction-https-arxiv-org-abs-2607-16638",
+          title: 'New preprint: [De-floored Principal Component Regression: When Rank Selection Alone Is Insufficient for...',
+          description: "",
+          section: "News",},{id: "news-new-preprint-beyond-negative-ridge-endpoints-mixed-sign-spectral-regularization-via-negative-shifted-gradient-descent-https-arxiv-org-abs-2607-22474",
+          title: 'New preprint: [Beyond Negative-Ridge Endpoints: Mixed-Sign Spectral Regularization via Negative-Shifted Gradient Descent](https://arxiv.org/abs/2607.22474).',
+          description: "",
+          section: "News",},{id: "news-new-blog-post-shrinkage-is-not-a-universal-law-post-url-2026-08-06-shrinkage-is-not-a-universal-law-when-expansion-rather-than-shrinkage-is-the-right-correction-in-overparameterized-prediction",
+          title: 'New blog post: [Shrinkage Is Not a Universal Law]({% post_url 2026-08-06-shrinkage-is-not-a-universal-law %}) —...',
+          description: "",
+          section: "News",},{id: "news-new-blog-post-the-spectrum-was-known-to-be-biased-why-did-pcr-keep-inverting-it-post-url-2026-08-07-de-floored-pcr-de-floored-pcr-and-correcting-the-spectral-floor-before-inversion",
+          title: 'New blog post: [The Spectrum Was Known to Be Biased. Why Did PCR...',
+          description: "",
+          section: "News",},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://pengzhaostat.github.io/assets/pdf/Peng_Zhao_CV.pdf", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/pengzhaostat", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/peng-zhao-289098111", "_blank");
+        },
+      },{
+        id: 'social-orcid',
+        title: 'ORCID',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://orcid.org/0000-0001-7043-0389", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=eZD-yZUAAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
