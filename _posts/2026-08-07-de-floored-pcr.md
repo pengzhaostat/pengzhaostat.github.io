@@ -31,34 +31,6 @@ PCR usually did something different. It kept the distorted eigenvalues—and inv
 
 Our recent paper on de-floored principal component regression (dPCR) starts from this simple mismatch.
 
-## We have known for decades that high-dimensional sample spectra are distorted
-
-The story begins well before modern machine learning.
-
-The Marchenko–Pastur law showed in 1967 that when dimension and sample size grow together, the eigenvalues of a sample covariance matrix do not simply converge one-by-one to the population eigenvalues. Even an isotropic population covariance generates a nontrivial empirical spectral distribution.
-
-The spiked-covariance literature then made the phenomenon even more striking. Johnstone's spiked model provided a canonical framework for studying a small number of population signals embedded in high-dimensional noise. Baik, Ben Arous and Péché—the BBP transition—showed that a population spike must cross a critical threshold before its empirical eigenvalue separates from the random bulk. Below that threshold, the sample spectrum does not reveal the spike as an isolated eigenvalue; above it, an outlier emerges.
-
-Paul subsequently characterized the asymptotic behavior of sample eigenvalues and eigenvectors in the spiked model, making precise that even separated empirical PCs can have nontrivial eigenvalue inflation and imperfect eigenvector alignment. Ledoit and Péché developed more general descriptions of how sample eigenvectors overlap with population eigenspaces, a key ingredient in understanding high-dimensional covariance estimation beyond eigenvalues alone.
-
-So by the late 2000s, the message was unmistakable:
-
-> The empirical spectrum is not the population spectrum plus negligible noise. High-dimensional sampling systematically transforms it.
-
-## Covariance estimation reacted by correcting the spectrum
-
-The covariance-estimation literature did not simply accept this distortion.
-
-Ledoit and Wolf's shrinkage program replaced the raw sample covariance by better-conditioned estimators. Their 2004 estimator shrinks toward a structured target, and later nonlinear shrinkage work explicitly transforms individual sample eigenvalues using random-matrix theory. The nonlinear shrinkage paper puts the motivation very clearly: when dimension is comparable to sample size, the sample covariance performs poorly, and nonlinear transformations of its empirical eigenvalues can produce substantially better covariance estimators.
-
-Donoho, Gavish and Johnstone pushed this perspective further in the spiked model. They derived optimal eigenvalue shrinkers under many different covariance losses and emphasized that the optimal correction depends on both sample-eigenvalue distortion and sample-eigenvector inconsistency.
-
-So an entire literature developed around the principle:
-
-> Do not blindly trust the empirical eigenvalues. Correct them according to the statistical task.
-
-That principle is now standard in high-dimensional covariance estimation.
-
 ## But PCR is an inverse problem
 
 Here is where something interesting happens.
@@ -96,20 +68,6 @@ Classical spectral cutoff methods solve instability by changing which singular d
 <p>What it does not normally ask is whether the retained empirical eigenvalue \(\widehat\mu_i\) itself contains a systematic nuisance component that should be removed before inversion. This distinction is explicit in our paper: ordinary spectral cutoff changes the <em>support</em> of the inverse filter, whereas dPCR changes the <em>denominators</em> within the retained range.</p>
 
 That matters because no rank choice can repair a wrong denominator. If a predictive component is retained, PCR inherits its attenuation. If it is discarded, PCR loses the component entirely. Neither choice produces the correct inverse weight.
-
-## Interestingly, PCR theory had already noticed the upward bias
-
-This makes the gap even more striking.
-
-Hucker and Wahl studied high-dimensional PCR prediction and explicitly observed that when their effective-rank condition fails, empirical eigenvalues can exhibit substantial upward bias. Their interpretation is that this produces self-induced regularization for PCR.
-
-That interpretation is natural. An inflated denominator shrinks regression coefficients. Shrinkage reduces variance. In many regimes, this is beneficial.
-
-Recent exact high-dimensional PCR theory also fully recognizes that sample covariance eigenvalues and eigenvectors can be inconsistent. Green and Romanov derive prediction-risk formulas depending on population spectra, signal alignment and sample–population eigenvector overlaps.
-
-So the phenomenon was not invisible. The conceptual choice was different: spectral inflation was usually treated as something to characterize, tolerate, or even exploit as implicit regularization—not as a prediction bias that might be worth removing.
-
-Our paper asks when that interpretation should reverse.
 
 ## When does self-induced regularization become over-regularization?
 
@@ -162,39 +120,15 @@ The floor can therefore be large enough to matter while remaining cheap to remov
 - the **rank** determines which empirical directions are trusted;
 - the **floor correction** determines how strongly the trusted directions should be inverted.
 
-In the sharp-floor regime, the floor can be estimated from the same empirical spectrum using the lower spectral cluster. Our theory shows that this plug-in correction attains the oracle dPCR rate at a prespecified retained rank. More importantly, in the matched sharp-floor asymptotic regime, the prediction risk of dPCR becomes negligible relative to the best ordinary PCR risk over *all possible ranks*.
+In the sharp-floor regime, the floor can be estimated from the same empirical spectrum using the lower spectral cluster. Our theory shows that this plug-in correction attains the oracle dPCR rate at a prespecified retained rank. More importantly, in the matched sharp-floor asymptotic regime, the prediction risk of dPCR becomes negligible relative to the best ordinary PCR risk over *all possible ranks*. This targets the sharp-floor regime specifically: in the ordinary proportional Marchenko–Pastur bulk, where the spectrum has persistent relative width, a single scalar correction is not enough.
 
 So the gain cannot be explained by better rank selection.
 
 > The missing regularization axis is denominator correction.
 
-## Why BBP and optimal covariance shrinkage did not already solve this problem
-
-There are two important distinctions.
-
-First, the BBP literature primarily asks when spectral signal separates from random noise and how empirical eigenvalues and eigenvectors behave. It characterizes the distortion; it is not itself a regression correction rule.
-
-Second, covariance shrinkage optimizes covariance-estimation losses. Regression prediction is a different decision problem. After inversion, an eigenvalue correction changes signal recovery and variance in a different way. The optimal correction depends on the regression signal and prediction geometry, not merely on estimating the covariance matrix accurately. Donoho, Gavish and Johnstone already demonstrate more generally that the optimal spectral shrinker depends strongly on the loss being optimized.
-
-So dPCR is not simply "apply covariance shrinkage and then run regression." Instead, it asks directly: when is empirical spectral inflation creating harmful regression attenuation, and when is removing it beneficial for prediction risk?
-
-## The boundary matters
-
-The paper does not claim that one should always subtract a spectral mean.
-
-In the ordinary proportional Marchenko–Pastur regime, the empirical bulk has persistent relative width. A single scalar floor does not capture the full distortion. Our fixed-aspect analysis shows exactly this limitation: positive denominator correction can still improve PCR, but the risk-optimal correction generally differs from simply subtracting the bulk mean.
-
-So the dPCR theory identifies a particular missing regime:
-
-<div class="blog-equation">\[ \boxed{\begin{array}{c} \text{floor large enough to matter} \\[3pt] +\ \text{floor sharp enough to estimate} \\[3pt] +\ \text{correction cheap enough to apply} \end{array}} \]</div>
-
-Outside that regime, richer spectral corrections may be needed.
-
 ## A familiar phenomenon viewed through an inverse
 
-This is perhaps the most interesting part of the story.
-
-Random-matrix theory told us that the empirical spectrum is distorted. Spiked-covariance theory told us when signal separates from the bulk and how sample PCs become inconsistent. Covariance-estimation theory told us not to trust raw sample eigenvalues and developed sophisticated ways to correct them.
+This is perhaps the most interesting part of the story. Random-matrix theory and covariance estimation both told us the empirical spectrum is distorted and worth correcting.
 
 <p>PCR nevertheless continued to use those eigenvalues primarily through a spectral cutoff: retain \(1/\widehat\mu_i\), or replace it by zero.</p>
 
