@@ -30,7 +30,7 @@ latest_posts:
 
 I am an Assistant Professor in the [Department of Applied Economics and Statistics](https://www.udel.edu/academics/colleges/canr/departments/applied-economics-and-statistics/) at the University of Delaware and a resident faculty member of the [Data Science Institute](https://dsi.udel.edu/).
 
-My research develops statistical and machine-learning methods for complex, high-dimensional data. I am particularly interested in **high-dimensional estimation and inference**, **network and relational data**, **variational inference**, **nonconvex optimization**, and **implicit regularization**. A recurring goal in my work is to understand how computational procedures shape statistical behavior and how that insight can lead to scalable, reliable methods.
+My research develops a theory of **deattenuation and anti-shrinkage**. I study when statistical procedures systematically attenuate recoverable signal, and when undoing—or even reversing—that attenuation improves prediction or estimation because the signal-recovery gain exceeds the accompanying variance cost.
 
 <aside class="home-research-callout" aria-label="Research highlight">
   <p>One current project studies a Marchenko–Pastur pole barrier that constrains stable negative-ridge endpoints in overparameterized regression. A new <a href="{{ '/research/#negative-shifted-highlight' | relative_url }}">research highlight</a> explains how finite-time <strong>negative-shifted gradient descent</strong> passes smoothly through the would-be pole and creates mixed-sign spectral regularization relative to ridgeless regression.</p>
