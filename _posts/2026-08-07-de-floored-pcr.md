@@ -23,15 +23,15 @@ This creates a familiar question:
 
 > How many principal components should we keep?
 
-For decades, this cutoff has been treated as the main regularization decision in PCR. But high-dimensional random-matrix theory has taught us something equally fundamental:
+For standard PCR, rank selection determines which empirical directions are retained. Once a direction is retained, however, PCR uses its empirical eigenvalue in the inverse. This distinction matters in high dimensions: when the dimension is comparable to the sample size, empirical eigenvalues need not closely track population spectral scales. Even an identity population covariance produces a dispersed sample spectrum under the [Marchenko–Pastur law](https://doi.org/10.1070/SM1967v001n04ABEH001994), while [spiked-covariance theory](https://www3.stat.sinica.edu.tw/statistica/j17n4/j17n418/j17n418.html) describes systematic distortions of leading sample eigenvalues and eigenvectors.
 
-> The empirical eigenvalues themselves can be systematically distorted.
+Covariance estimation has long treated this discrepancy as an estimation problem. The literature includes [linear shrinkage](https://www.sciencedirect.com/science/article/pii/S0047259X03000964), [population-spectrum recovery](https://arxiv.org/abs/math/0609418), [eigenvector-aware bias correction](https://arxiv.org/abs/0911.3010), and [nonlinear eigenvalue shrinkage](https://arxiv.org/abs/1207.5322). These methods differ technically, but share a common premise: empirical covariance eigenvalues should not automatically be used as if they were population eigenvalues.
 
-Covariance-estimation theory responded to this fact by developing increasingly sophisticated ways to shrink, debias, or otherwise correct empirical spectra.
+Standard spectral-cutoff PCR usually addresses a different part of the problem. It changes **which directions are inverted**, but not **the empirical eigenvalues used in the retained inverse weights**. This leads to a natural question:
 
-PCR usually did something different. It kept the distorted eigenvalues—and inverted them.
+> If spectral distortion is worth correcting in covariance estimation, what happens when the same distorted eigenvalues are subsequently **inverted** in PCR?
 
-Our recent paper on de-floored principal component regression (dPCR) starts from this simple mismatch.
+Our recent paper on de-floored principal component regression (dPCR) starts from this question.
 
 ## But PCR is an inverse problem
 
