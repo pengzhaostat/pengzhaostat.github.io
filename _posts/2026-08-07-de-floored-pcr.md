@@ -128,6 +128,13 @@ So the gain cannot be explained by better rank selection.
 
 > The missing regularization axis is denominator correction.
 
+<figure class="blog-figure">
+  <a href="{{ '/assets/img/fig10_heterogeneous_rank_sweep.png' | relative_url }}" aria-label="Open the full-resolution dPCR risk-separation figure">
+    <img src="{{ '/assets/img/fig10_heterogeneous_rank_sweep.png' | relative_url }}" alt="Two-panel simulation figure comparing conditional prediction risk for PCR, oracle dPCR, and plug-in dPCR. Panel a sweeps retained rank at sample size 125 and marks the predictive head rank h equals 6; the oracle and plug-in dPCR curves nearly coincide and fall well below PCR at and beyond the head rank, while the best PCR risk across the sweep remains higher. Panel b plots risk across sample sizes; rank-h oracle and plug-in dPCR nearly overlap and increasingly separate below the best PCR risk over all ranks." loading="lazy" width="2062" height="867">
+  </a>
+  <figcaption><strong>Risk separation beyond rank selection.</strong> <strong>(a)</strong> At \(n=125\), oracle and plug-in dPCR nearly coincide at the predictive head rank \(h=6\), while even the lowest PCR risk over the full rank sweep remains substantially higher. <strong>(b)</strong> Across sample sizes, rank-\(h\) dPCR separates from the best ordinary PCR risk over all ranks, and the plug-in correction closely tracks the oracle correction. Shaded bands indicate simulation uncertainty.</figcaption>
+</figure>
+
 ## A familiar phenomenon viewed through an inverse
 
 This is perhaps the most interesting part of the story. Random-matrix theory and covariance estimation both told us the empirical spectrum is distorted and worth correcting.
