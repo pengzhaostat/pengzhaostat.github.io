@@ -134,5 +134,4 @@ I develop variational and approximate Bayesian methods for models where conventi
 
 I am also interested in shrinkage priors, graphical models, dimension reduction, and Bayesian models that adapt to complex dependence without imposing unnecessarily rigid parametric structure.
 
-
 <script src="{{ '/assets/js/research-highlight.js' | relative_url }}" defer></script>
