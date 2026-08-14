@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["publication-links.scss"],"names":[],"mappings":"AAAA,0BACE,oBACA","sourcesContent":[".publications .links .btn {\n padding: 0.3rem 0.6rem;\n font-size: 0.72rem;\n}\n"],"file":"publication-links.css"}
