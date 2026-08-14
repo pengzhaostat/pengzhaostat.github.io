@@ -2,12 +2,16 @@
 layout: post
 title: "The Spectrum Was Known to Be Biased. Why Did PCR Keep Inverting It?"
 date: 2026-08-07 00:00:00 -0400
-description: Covariance estimation learned to correct the distorted high-dimensional sample spectrum; principal component regression kept inverting it. De-floored PCR removes the endogenous spectral floor before inversion — in the regime where it is large enough to matter yet cheap to remove.
+description: De-floored PCR performs spectral deattenuation by removing an endogenous high-dimensional floor before inversion, in the regime where that floor is large enough to matter yet inexpensive to remove.
 tags:
   - statistics
   - machine-learning
   - high-dimensional-statistics
   - random-matrix-theory
+  - spectral-regularization
+  - inverse-problems
+  - deattenuation
+  - anti-shrinkage
 categories:
   - research
 giscus_comments: false
@@ -47,7 +51,7 @@ For covariance estimation, seeing an eigenvalue that is too large naturally sugg
 
 <div class="blog-equation">\[ \frac{s_i}{s_i+a} < 1. \]</div>
 
-So the same upward spectral distortion that covariance estimation tries to remove becomes downward attenuation of the regression signal after inversion.
+So the same upward spectral distortion that covariance estimation tries to remove becomes downward attenuation of the regression signal after inversion. dPCR treats this as a **deattenuation** problem: estimate the nuisance floor and remove it before forming the retained inverse weights.
 
 <p>Correcting \(s_i+a \longrightarrow s_i\) means changing the regression weight from</p>
 
@@ -55,7 +59,7 @@ So the same upward spectral distortion that covariance estimation tries to remov
 
 In other words:
 
-> Shrinking an inflated covariance eigenvalue corresponds to anti-shrinking the associated regression coefficient.
+> Shrinking an inflated covariance eigenvalue corresponds to deattenuating—or, relative to ordinary PCR, anti-shrinking—the associated regression coefficient.
 
 This inversion changes the statistical interpretation completely.
 
@@ -111,7 +115,7 @@ This is the key structural result of the paper.
 
 The floor can therefore be large enough to matter while remaining cheap to remove.
 
-## De-floored PCR
+## De-floored PCR: deattenuation before inversion
 
 <p>dPCR makes the simplest possible correction. Where ordinary PCR uses \(1/\widehat\mu_i\) on retained components, dPCR uses</p>
 
