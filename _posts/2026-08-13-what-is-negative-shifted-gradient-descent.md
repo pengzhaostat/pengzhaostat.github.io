@@ -30,7 +30,7 @@ Negative-shifted gradient descent (NS-GD) changes the question. Instead of conve
 
 ## Why negative ridge hits a wall
 
-For an empirical eigenvalue \(\mu\), the negative-ridge endpoint acts relative to ridgeless regression through
+For an empirical eigenvalue $\mu$, the negative-ridge endpoint acts relative to ridgeless regression through
 
 <div class="blog-equation">
 \[
@@ -46,7 +46,7 @@ To define a stable endpoint over the entire positive empirical spectrum, the sig
 \]
 </div>
 
-As \(\mu\) approaches \(\nu\) from above, \(A_\nu(\mu)\) diverges. Moreover,
+As $\mu$ approaches $\nu$ from above, $A_\nu(\mu)$ diverges. Moreover,
 
 <div class="blog-equation">
 \[
@@ -80,7 +80,7 @@ Starting from zero, the path follows
 \]
 </div>
 
-On a positive empirical eigenmode \(\mu\), its multiplier relative to ridgeless regression is
+On a positive empirical eigenmode $\mu$, its multiplier relative to ridgeless regression is
 
 <div class="blog-equation">
 \[
@@ -101,7 +101,7 @@ f_{\nu,t}(\nu)=\nu t.
 \]
 </div>
 
-Thus the finite-time path remains smooth exactly where the endpoint diverges. The reference value is \(f=1\): values below one shrink relative to ridgeless, while values above one produce head anti-shrinkage.
+Thus the finite-time path remains smooth exactly where the endpoint diverges. The reference value is $f=1$: values below one shrink relative to ridgeless, while values above one produce head anti-shrinkage.
 
 The formula above is exact for continuous-time NS-GF. Discrete NS-GD is its controlled finite-step implementation under the paper's step-size conditions; it should not be read as an unrestricted exact equivalence.
 
@@ -109,7 +109,7 @@ The formula above is exact for continuous-time NS-GF. Discrete NS-GD is its cont
   <a href="{{ '/assets/img/nsgd_endpoint_finite_path.png' | relative_url }}" aria-label="Open the full-resolution endpoint-versus-finite-path spectral-filter figure">
     <img src="{{ '/assets/img/nsgd_endpoint_finite_path.png' | relative_url }}" alt="A spectral-filter plot with empirical eigenvalue mu increasing from tail to head. A dashed red negative-ridge endpoint rises toward a pole at mu equals nu and is tail-heavy on its stable branch. A blue finite-time negative-shifted path is smooth at the would-be pole, lies below the ridgeless level on lower modes, crosses f equals one, and lies above ridgeless on leading head modes." loading="lazy" width="1448" height="924">
   </a>
-  <figcaption><strong>Endpoint versus finite path.</strong> The dashed endpoint branch is tail-heavy and diverges at \(\mu=\nu\); a globally stable endpoint would have to place this pole below the entire positive empirical spectrum. The finite-time path has the removable value \(f_{\nu,t}(\nu)=\nu t\). For the displayed pair \((\nu,t)\), it remains below ridgeless on lower modes and crosses above one on a signal-rich leading region. With \(\nu\) fixed, \(t\) moves the displayed crossover; in general, the crossing is determined jointly by \((\nu,t)\). The blue curve is the continuous-time idealization of the finite-step NS-GD path.</figcaption>
+  <figcaption><strong>Endpoint versus finite path.</strong> The dashed endpoint branch is tail-heavy and diverges at $\mu=\nu$; a globally stable endpoint would have to place this pole below the entire positive empirical spectrum. The finite-time path has the removable value $f_{\nu,t}(\nu)=\nu t$. For the displayed pair $(\nu,t)$, it remains below ridgeless on lower modes and crosses above one on a signal-rich leading region. With $\nu$ fixed, $t$ moves the displayed crossover; in general, the crossing is determined jointly by $(\nu,t)$. The blue curve is the continuous-time idealization of the finite-step NS-GD path.</figcaption>
 </figure>
 
 For an interactive version of the filter—and a separate illustration of the Marchenko–Pastur barrier—see the [Research Highlight]({{ '/research/' | relative_url }}#negative-shifted-highlight).
@@ -118,16 +118,16 @@ For an interactive version of the filter—and a separate illustration of the Ma
 
 The figure contains two different boundaries.
 
-- The point \(\mu=\nu\) is the would-be endpoint pole and separates contracting from growing dynamics.
-- The point where \(f_{\nu,t}(\mu)=1\) separates shrinkage from anti-shrinkage relative to ridgeless regression.
+- The point $\mu=\nu$ is the would-be endpoint pole and separates contracting from growing dynamics.
+- The point where $f_{\nu,t}(\mu)=1$ separates shrinkage from anti-shrinkage relative to ridgeless regression.
 
-We use **spectrum crossing** for the second phenomenon: as \(\mu\) increases, the finite-time filter crosses the ridgeless level and the sign of \(f_{\nu,t}(\mu)-1\) changes.
+We use **spectrum crossing** for the second phenomenon: as $\mu$ increases, the finite-time filter crosses the ridgeless level and the sign of $f_{\nu,t}(\mu)-1$ changes.
 
 These points need not coincide. In particular, placing a mode on the growing side of the dynamics does not automatically put its finite-time filter above one. At a selected stopping time, deep lower modes may still be shrunk or exposure-controlled even while a signal-rich leading region has crossed above ridgeless.
 
-This is **mixed-sign spectral regularization**. The sign refers to \(f_{\nu,t}(\mu)-1\): negative means shrinkage, positive means anti-shrinkage. For the continuous-time filter, the above-ridgeless modes form a leading spectral prefix, and its crossing boundary is set jointly by the signed level and stopping time.
+This is **mixed-sign spectral regularization**. The sign refers to $f_{\nu,t}(\mu)-1$: negative means shrinkage, positive means anti-shrinkage. For the continuous-time filter, the above-ridgeless modes form a leading spectral prefix, and its crossing boundary is set jointly by the signed level and stopping time.
 
-The two parameters therefore play different roles. The signed level \(\nu\) sets the pole location and the noncontractive scale; \(t\) limits exposure along the path and, together with \(\nu\), determines which modes cross ridgeless.
+The two parameters therefore play different roles. The signed level $\nu$ sets the pole location and the noncontractive scale; $t$ limits exposure along the path and, together with $\nu$, determines which modes cross ridgeless.
 
 ## Early stopping is the regularizer
 
@@ -137,7 +137,7 @@ Some directions of the negative-shifted dynamics would diverge if the method ran
 
 The answer depends on the same bias–variance comparison that governs deattenuation more broadly. Anti-shrinkage can recover signal that sampling geometry or implicit regularization has attenuated, but it also increases noise and lower-spectrum exposure. The path is useful only while the recovered-signal gain exceeds that variance price.
 
-This is why the stopping time is not an implementation detail. **It is the regularizer.** Validation over a finite grid of \((\nu,t)\) values chooses an implementation, while the theory identifies regimes in which the resulting finite exposure is controlled.
+This is why the stopping time is not an implementation detail. **It is the regularizer.** Validation over a finite grid of $(\nu,t)$ values chooses an implementation, while the theory identifies regimes in which the resulting finite exposure is controlled.
 
 For the prediction geometry behind this comparison, see [Shrinkage Is Not a Universal Law]({% post_url 2026-08-06-shrinkage-is-not-a-universal-law %}).
 
