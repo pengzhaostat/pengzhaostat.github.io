@@ -15,7 +15,7 @@ giscus_comments: false
 
 <link rel="stylesheet" href="{{ '/assets/css/blog-post.css' | relative_url }}">
 
-For a concise overview of the paper and its background, see [alphaXiv](https://www.alphaxiv.org/abs/2607.16638).
+[Paper](https://arxiv.org/abs/2607.16638) · [alphaXiv](https://www.alphaxiv.org/abs/2607.16638) · [Code](https://github.com/pengzhaostat/defloored-pcr-simulations)
 
 Principal component regression (PCR) is one of the oldest and simplest forms of spectral regularization. Compute the empirical principal components, keep the leading ones, discard the rest, and perform regression in the retained subspace.
 
@@ -41,7 +41,7 @@ Here is where something interesting happens.
 
 <div class="blog-equation">\[ s_i + a. \]</div>
 
-For covariance estimation, seeing an eigenvalue that is too large naturally suggests correcting it downward. But regression uses the eigenvalue in the *denominator*.
+For covariance estimation, seeing an eigenvalue that is too large naturally suggests correcting it downward. But regression uses the eigenvalue in the _denominator_.
 
 <p>Ordinary PCR effectively applies the inverse weight \(1/(s_i+a)\), so the resulting signal multiplier is approximately</p>
 
@@ -122,7 +122,7 @@ The floor can therefore be large enough to matter while remaining cheap to remov
 - the **rank** determines which empirical directions are trusted;
 - the **floor correction** determines how strongly the trusted directions should be inverted.
 
-In the sharp-floor regime, the floor can be estimated from the same empirical spectrum using the lower spectral cluster. Our theory shows that this plug-in correction attains the oracle dPCR rate at a prespecified retained rank. More importantly, in the matched sharp-floor asymptotic regime, the prediction risk of dPCR becomes negligible relative to the best ordinary PCR risk over *all possible ranks*. This targets the sharp-floor regime specifically: in the ordinary proportional Marchenko–Pastur bulk, where the spectrum has persistent relative width, a single scalar correction is not enough.
+In the sharp-floor regime, the floor can be estimated from the same empirical spectrum using the lower spectral cluster. Our theory shows that this plug-in correction attains the oracle dPCR rate at a prespecified retained rank. More importantly, in the matched sharp-floor asymptotic regime, the prediction risk of dPCR becomes negligible relative to the best ordinary PCR risk over _all possible ranks_. This targets the sharp-floor regime specifically: in the ordinary proportional Marchenko–Pastur bulk, where the spectrum has persistent relative width, a single scalar correction is not enough.
 
 So the gain cannot be explained by better rank selection.
 

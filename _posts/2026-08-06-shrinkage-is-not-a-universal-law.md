@@ -14,7 +14,7 @@ giscus_comments: false
 
 <link rel="stylesheet" href="{{ '/assets/css/blog-post.css' | relative_url }}">
 
-For a concise overview of the paper and its background, see [alphaXiv](https://www.alphaxiv.org/abs/2607.22474).
+[Paper](https://arxiv.org/abs/2607.22474) · [alphaXiv](https://www.alphaxiv.org/abs/2607.22474) · [Code](https://github.com/pengzhaostat/mixed-sign-spectral-regularization)
 
 One of the most famous lessons in statistics comes from the James–Stein phenomenon: when estimating many noisy quantities, pulling the estimates toward zero can reduce their total error.
 
