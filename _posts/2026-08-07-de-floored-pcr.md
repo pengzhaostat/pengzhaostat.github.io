@@ -15,7 +15,7 @@ giscus_comments: false
 
 <link rel="stylesheet" href="{{ '/assets/css/blog-post.css' | relative_url }}">
 
-For a concise overview of the paper and its background, see [alphaXiv](https://www.alphaxiv.org/abs/2607.16638).
+[Paper](https://arxiv.org/abs/2607.16638) · [alphaXiv](https://www.alphaxiv.org/abs/2607.16638) · [Code](https://github.com/pengzhaostat/defloored-pcr-simulations)
 
 Principal component regression (PCR) is one of the oldest and simplest forms of spectral regularization. Compute the empirical principal components, keep the leading ones, discard the rest, and perform regression in the retained subspace.
 

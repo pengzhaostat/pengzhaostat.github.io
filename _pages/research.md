@@ -8,11 +8,9 @@ nav_order: 1
 
 <link rel="stylesheet" href="{{ '/assets/css/research-highlight.css' | relative_url }}">
 
-My research sits at the intersection of statistical theory, machine learning, and computation. I develop methods that remain interpretable and statistically principled while scaling to modern high-dimensional and structured datasets.
-
 ## High-dimensional statistics and implicit regularization
 
-I study estimation and prediction when the number of parameters is comparable to or larger than the sample size. This includes implicit regularization from optimization algorithms, spectral methods, principal component regression, and procedures whose finite-time behavior can differ sharply from their limiting solutions.
+High-dimensional procedures regularize not only through explicit penalties, but also through sampling geometry, spectral truncation, and finite-time optimization. I study when these mechanisms attenuate recoverable signal, how to quantify the corresponding variance price, and when deattenuation or anti-shrinkage improves prediction.
 
 <section class="research-highlight" id="negative-shifted-highlight" aria-labelledby="rh-title">
   <header class="rh-header">
@@ -22,7 +20,7 @@ I study estimation and prediction when the number of parameters is comparable to
     <div class="rh-actions" aria-label="Research links">
       <a class="rh-button" href="https://arxiv.org/pdf/2607.22474" target="_blank" rel="noopener noreferrer">Paper</a>
       <a class="rh-button" href="https://arxiv.org/abs/2607.22474" target="_blank" rel="noopener noreferrer">arXiv</a>
-      <span class="rh-button is-disabled" aria-disabled="true" title="Link forthcoming">Code</span>
+      <a class="rh-button" href="https://github.com/pengzhaostat/mixed-sign-spectral-regularization" target="_blank" rel="noopener noreferrer">Code</a>
     </div>
   </header>
 
@@ -136,8 +134,5 @@ I develop variational and approximate Bayesian methods for models where conventi
 
 I am also interested in shrinkage priors, graphical models, dimension reduction, and Bayesian models that adapt to complex dependence without imposing unnecessarily rigid parametric structure.
 
-## Current support
-
-My research on **Graph Machine Learning** is supported by Microsoft Research (co-PI; 2026–present).
 
 <script src="{{ '/assets/js/research-highlight.js' | relative_url }}" defer></script>

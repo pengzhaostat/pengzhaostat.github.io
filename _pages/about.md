@@ -27,6 +27,7 @@ latest_posts:
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/home-highlight.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/publication-links.css' | relative_url }}">
 
 I am an Assistant Professor in the [Department of Applied Economics and Statistics](https://www.udel.edu/academics/colleges/canr/departments/applied-economics-and-statistics/) at the University of Delaware and a resident faculty member of the [Data Science Institute](https://dsi.udel.edu/).
 

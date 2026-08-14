@@ -121,7 +121,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Blog
-blog_description: Notes on statistics, machine learning, and research.
+blog_description: Notes on spectral regularization and high-dimensional prediction.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
