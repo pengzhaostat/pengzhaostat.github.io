@@ -5,5 +5,9 @@ x_profile:
   logo: fa-brands fa-x-twitter
   title: X
   url: https://x.com/PengZhao1155881
+alphaxiv:
+  logo: fa-solid fa-book-open-reader
+  title: alphaXiv
+  url: https://www.alphaxiv.org/@peng-zhao-2
 orcid_id: 0000-0001-7043-0389
 scholar_userid: eZD-yZUAAAAJ
