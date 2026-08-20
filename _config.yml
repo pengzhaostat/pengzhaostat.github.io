@@ -369,6 +369,7 @@ filtered_bibtex_keywords:
     additional_info,
     altmetric,
     annotation,
+    alphaxiv,
     arxiv,
     award,
     award_name,
