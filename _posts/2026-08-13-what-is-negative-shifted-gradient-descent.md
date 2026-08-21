@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When the Useful Estimator Is Not an Endpoint"
+title: "What Is Negative-Shifted Gradient Descent—When the Useful Estimator Is Not an Endpoint"
 date: 2026-08-13 23:30:00 -0400
 description: The correction that removes high-dimensional implicit shrinkage can sit exactly at, or beyond, the pole that rules out every stable negative-ridge endpoint. Finite-time dynamics make that region usable.
 tags:
