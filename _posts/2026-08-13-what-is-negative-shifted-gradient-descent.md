@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "What Is Negative-Shifted Gradient Descent—and Why Use It?"
+title: "When the Useful Estimator Is Not an Endpoint"
 date: 2026-08-13 23:30:00 -0400
-description: A finite-time signed path can pass smoothly through the pole that constrains negative-ridge endpoints, producing head anti-shrinkage with controlled lower-spectrum exposure.
+description: The correction that removes high-dimensional implicit shrinkage can sit exactly at, or beyond, the pole that rules out every stable negative-ridge endpoint. Finite-time dynamics make that region usable.
 tags:
   - statistics
   - machine-learning
@@ -22,23 +22,66 @@ giscus_comments: false
 
 [Paper](https://arxiv.org/abs/2607.22474) · [alphaXiv](https://www.alphaxiv.org/abs/2607.22474) · [Code](https://github.com/pengzhaostat/mixed-sign-spectral-regularization) · [Interactive Research Highlight]({{ '/research/' | relative_url }}#negative-shifted-highlight)
 
-Negative ridge suggests a natural way to undo excessive shrinkage: subtract a positive signed level before inversion so that attenuated modes receive more weight. But its endpoint has two structural problems. It has a pole, and its strongest amplification falls on the smallest stable eigenvalues.
+We usually define a regularized estimator by an endpoint: write down an objective, solve it in closed form or run an algorithm until it converges, and call the limit the estimator. The computation is treated as a route to that destination.
 
-Negative-shifted gradient descent (NS-GD) changes the question. Instead of converging to that endpoint, it stops along the path. At finite time, the would-be pole becomes removable, and the filter can anti-shrink a signal-rich head while keeping deep lower modes shrunk or exposure-controlled.
+Negative-shifted gradient descent (NS-GD) starts from a different possibility. What if the statistically useful estimator lies on the path, in a region where no stable endpoint exists?
 
-> **The endpoint has the useful sign, but the finite path has the useful shape.**
+This is not a metaphor in the head–tail model studied in our paper. The correction that exactly removes implicit head shrinkage can place the signed level at the very spectral location where a negative-ridge endpoint blows up.
 
-## Why negative ridge hits a wall
+> **Finite time is not an approximation to the endpoint. It creates an estimator that the endpoint cannot represent.**
 
-For an empirical eigenvalue $\mu$, the negative-ridge endpoint acts relative to ridgeless regression through
+## Endpoint thinking is natural—but restrictive
+
+Closed-form and converged estimators remain valuable: they are analyzable, reproducible, and often inexpensive to compute. The habit of identifying the estimator with a stationary solution also reflects a period when optimization was mainly expected to deliver that solution.
+
+Modern iterative computation gives us another design space. Once the whole trajectory is available, there is no statistical reason to assume that its infinite-time limit must be its best point. A stopping time can be a regularization parameter, and a deliberately nonconvergent direction can still pass through a well-controlled estimator.
+
+The distinction is conceptual:
+
+- **Endpoint regularization** asks which stable objective or inverse we should solve.
+- **Path regularization** asks which finite-time spectral transformation gives the best prediction tradeoff.
+
+NS-GD matters because these two questions have different feasible answers.
+
+## The useful correction can sit at the pole
+
+Consider an overparameterized head–tail model. A signal-bearing head has population scale \(\lambda_h\). The tail contains \(d_T\) individually weak directions, each with scale \(\lambda_T\). If \(\gamma_T=d_T/n\), their aggregate sample-space contribution behaves approximately like the scalar floor
 
 <div class="blog-equation">
 \[
-A_\nu(\mu)=\frac{\mu}{\mu-\nu}.
+a=\gamma_T\lambda_T.
 \]
 </div>
 
-To define a stable endpoint over the entire positive empirical spectrum, the signed level must satisfy
+The floor stabilizes interpolation, but the head is then recovered only at the attenuated ridgeless level
+
+<div class="blog-equation">
+\[
+\frac{\lambda_h}{a+\lambda_h}.
+\]
+</div>
+
+In the ideal common-spike model, the exact correction uses
+
+<div class="blog-equation">
+\[
+\nu_\star=a+\lambda_h,
+\qquad
+t_\star=\frac{1}{\lambda_h}.
+\]
+</div>
+
+Why is this striking? The observed head location is also \(a+\lambda_h\). Thus the useful signed level satisfies \(\nu_\star=\mu_h\): it is placed exactly where the negative-ridge endpoint
+
+<div class="blog-equation">
+\[
+A_\nu(\mu)=\frac{\mu}{\mu-\nu}
+\]
+</div>
+
+has its pole.
+
+A stable negative-ridge endpoint must keep that pole below the entire positive empirical spectrum,
 
 <div class="blog-equation">
 \[
@@ -46,41 +89,35 @@ To define a stable endpoint over the entire positive empirical spectrum, the sig
 \]
 </div>
 
-As $\mu$ approaches $\nu$ from above, $A_\nu(\mu)$ diverges. Moreover,
+But random-matrix geometry places the Marchenko–Pastur lower edge near
 
 <div class="blog-equation">
 \[
-A_\nu(\mu)-1=\frac{\nu}{\mu-\nu},
+\widehat\mu_{\min}^{+}
+\approx
+a-2\sqrt{a\lambda_T},
 \]
 </div>
 
-so the endpoint gives its largest anti-shrinkage to the smallest stable modes. That is the wrong shape when the goal is to strengthen a signal-bearing head without paying uncontrolled lower-spectrum exposure.
+well below \(\nu_\star=a+\lambda_h\). The desired correction is therefore not merely difficult to reach by negative ridge. It lies outside the stable endpoint class, and in the ideal model its target head mode is the endpoint pole itself.
 
-This limitation becomes concrete in overparameterized random-design problems. Many weak tail directions can collectively create an implicit spectral floor beneath the predictive head. A useful floor-critical or supercritical signed level may then lie near or inside the empirical tail bulk, beyond the range available to a stable negative-ridge endpoint. This is the Marchenko–Pastur pole barrier.
+## A closed-form inverse is not necessarily a stable solution
 
-## Stopping early removes the pole
-
-To see the mechanism cleanly, consider the continuous-time idealization of NS-GD, which we call negative-shifted gradient flow (NS-GF). Let
+There is an important precision here. If \(\nu\) is above \(\widehat\mu_{\min}^{+}\) but does not equal an empirical eigenvalue exactly, one may still be able to write the algebraic expression
 
 <div class="blog-equation">
 \[
-S=\frac{X^\top X}{n},
-\qquad
-g=\frac{X^\top y}{n}.
+(\widehat\Sigma-\nu I)^{-1}b
 \]
 </div>
 
-Starting from zero, the path follows
+on the empirical row space. But this does not make it a stable negative-ridge endpoint. Directions with \(\mu<\nu\) have negative curvature, the quadratic objective is not bounded below along those directions, and gradient dynamics grow instead of converging. Near \(\mu=\nu\), the rational inverse is also arbitrarily sensitive; at equality, it is undefined.
 
-<div class="blog-equation">
-\[
-\dot\beta(t)=-(S-\nu I)\beta(t)+g,
-\qquad
-\beta(0)=0.
-\]
-</div>
+So “the inverse can be written” and “the estimator can be reached as a stable regularized solution” are different statements. Beyond the endpoint wall, the former may hold away from exact poles; the latter does not.
 
-On a positive empirical eigenmode $\mu$, its multiplier relative to ridgeless regression is
+## Finite time changes the singularity
+
+The continuous-time idealization of NS-GD has spectral filter
 
 <div class="blog-equation">
 \[
@@ -88,12 +125,14 @@ On a positive empirical eigenmode $\mu$, its multiplier relative to ridgeless re
 f_{\nu,t}(\mu)
 =
 \frac{\mu}{\mu-\nu}
-\left\{1-e^{-t(\mu-\nu)}\right\}.
+\left\{1-e^{-t(\mu-\nu)}\right\}
+=
+\mu\int_0^t e^{-(\mu-\nu)s}\,ds.
 }
 \]
 </div>
 
-The apparent singularity cancels:
+The integral representation reveals the key fact:
 
 <div class="blog-equation">
 \[
@@ -101,50 +140,39 @@ f_{\nu,t}(\nu)=\nu t.
 \]
 </div>
 
-Thus the finite-time path remains smooth exactly where the endpoint diverges. The reference value is $f=1$: values below one shrink relative to ridgeless, while values above one produce head anti-shrinkage.
+The endpoint pole is removable at every finite time. At the common-spike choice \((\nu_\star,t_\star)\),
 
-The formula above is exact for continuous-time NS-GF. Discrete NS-GD is its controlled finite-step implementation under the paper's step-size conditions; it should not be read as an unrestricted exact equivalence.
+<div class="blog-equation">
+\[
+\frac{\lambda_h}{a+\lambda_h}
+\,f_{\nu_\star,t_\star}(a+\lambda_h)
+=1.
+\]
+</div>
+
+The finite path therefore cancels the implicit attenuation exactly in the ideal floor model, even though the corresponding endpoint is singular at that same head location.
 
 <figure class="blog-figure">
   <a href="{{ '/assets/img/nsgd_endpoint_finite_path.png' | relative_url }}" aria-label="Open the full-resolution endpoint-versus-finite-path spectral-filter figure">
     <img src="{{ '/assets/img/nsgd_endpoint_finite_path.png' | relative_url }}" alt="A spectral-filter plot with empirical eigenvalue mu increasing from tail to head. A dashed red negative-ridge endpoint rises toward a pole at mu equals nu and is tail-heavy on its stable branch. A blue finite-time negative-shifted path is smooth at the would-be pole, lies below the ridgeless level on lower modes, crosses f equals one, and lies above ridgeless on leading head modes." loading="lazy" width="1448" height="924">
   </a>
-  <figcaption><strong>Endpoint versus finite path.</strong> The dashed endpoint branch is tail-heavy and diverges at $\mu=\nu$; a globally stable endpoint would have to place this pole below the entire positive empirical spectrum. The finite-time path has the removable value $f_{\nu,t}(\nu)=\nu t$. For the displayed pair $(\nu,t)$, it remains below ridgeless on lower modes and crosses above one on a signal-rich leading region. With $\nu$ fixed, $t$ moves the displayed crossover; in general, the crossing is determined jointly by $(\nu,t)$. The blue curve is the continuous-time idealization of the finite-step NS-GD path.</figcaption>
+  <figcaption><strong>Endpoint versus finite path.</strong> The negative-ridge endpoint diverges at \(\mu=\nu\) and must place its pole below the positive empirical spectrum to remain stable. The finite-time path is smooth at the same location. Its stopping time can produce head anti-shrinkage while lower modes remain shrunk or exposure-controlled.</figcaption>
 </figure>
 
-For an interactive version of the filter—and a separate illustration of the Marchenko–Pastur barrier—see the [Research Highlight]({{ '/research/' | relative_url }}#negative-shifted-highlight).
+For an interactive version of this filter and a separate illustration of the Marchenko–Pastur barrier, see the [Research Highlight]({{ '/research/' | relative_url }}#negative-shifted-highlight).
 
-## Spectrum crossing: one path, two regularization signs
+## The path is the statistical object
 
-The figure contains two different boundaries.
+Once we stop treating iteration as merely a numerical approximation to a closed-form answer, the role of NS-GD becomes clearer. The signed level \(\nu\) chooses a correction scale that a stable endpoint may be unable to access. The stopping time \(t\) limits how long the lower spectrum is exposed to the noncontractive dynamics.
 
-- The point $\mu=\nu$ is the would-be endpoint pole and separates contracting from growing dynamics.
-- The point where $f_{\nu,t}(\mu)=1$ separates shrinkage from anti-shrinkage relative to ridgeless regression.
+Together, these two parameters create **mixed-sign spectral regularization**. The sign refers to the displacement from ridgeless regression, \(f_{\nu,t}(\mu)-1\): selected leading modes can be anti-shrunk above one, while lower modes remain below one or exposure-controlled. A single stable negative-ridge endpoint cannot produce this leading-prefix shape; its amplification instead grows toward its lower-spectrum pole.
 
-We use **spectrum crossing** for the second phenomenon: as $\mu$ increases, the finite-time filter crosses the ridgeless level and the sign of $f_{\nu,t}(\mu)-1$ changes.
+This does not mean that every unstable trajectory is useful. The recovered-signal gain must exceed the variance and lower-spectrum exposure price. In practice, NS-GD evaluates a finite grid of signed levels and stopping times and uses validation to choose among finite iterates. Discrete NS-GD is the controlled finite-step implementation; the smooth formula above describes its continuous-time geometry.
 
-These points need not coincide. In particular, placing a mode on the growing side of the dynamics does not automatically put its finite-time filter above one. At a selected stopping time, deep lower modes may still be shrunk or exposure-controlled even while a signal-rich leading region has crossed above ridgeless.
-
-This is **mixed-sign spectral regularization**. The sign refers to $f_{\nu,t}(\mu)-1$: negative means shrinkage, positive means anti-shrinkage. For the continuous-time filter, the above-ridgeless modes form a leading spectral prefix, and its crossing boundary is set jointly by the signed level and stopping time.
-
-The two parameters therefore play different roles. The signed level $\nu$ sets the pole location and the noncontractive scale; $t$ limits exposure along the path and, together with $\nu$, determines which modes cross ridgeless.
-
-## Early stopping is the regularizer
-
-Some directions of the negative-shifted dynamics would diverge if the method ran forever. But convergence is not the statistical objective; prediction risk is.
-
-> **Can a trajectory that is asymptotically unstable pass through a statistically better estimator at finite time?**
-
-The answer depends on the same bias–variance comparison that governs deattenuation more broadly. Anti-shrinkage can recover signal that sampling geometry or implicit regularization has attenuated, but it also increases noise and lower-spectrum exposure. The path is useful only while the recovered-signal gain exceeds that variance price.
-
-This is why the stopping time is not an implementation detail. **It is the regularizer.** Validation over a finite grid of $(\nu,t)$ values chooses an implementation, while the theory identifies regimes in which the resulting finite exposure is controlled.
-
-For the prediction geometry behind this comparison, see [Shrinkage Is Not a Universal Law]({% post_url 2026-08-06-shrinkage-is-not-a-universal-law %}).
+The larger lesson is that computation can expand the statistical estimator class. Closed-form endpoints are still important, but they need not define its boundary. When the useful correction lies at or beyond an endpoint pole, convergence is not the goal—it is the constraint that must be avoided.
 
 ## Takeaway
 
-NS-GD does not try to compute an unstable negative-ridge solution. It uses the same signed direction without taking the endpoint:
+Negative ridge identifies the correct direction of correction, but stable negative-ridge endpoints cannot reach the required magnitude in the regime studied here. Finite-time negative-shifted dynamics can.
 
-> **The negative-ridge endpoint is pole-constrained and tail-heavy. The stopped path removes the pole, changes the filter shape, and can combine head anti-shrinkage with controlled lower-spectrum exposure.**
-
-That is why finite time matters. The goal is not instability for its own sake, but selective deattenuation before the variance price becomes too large.
+> **The optimization path is not just how we compute the estimator. In this problem, the path is where the estimator exists.**
