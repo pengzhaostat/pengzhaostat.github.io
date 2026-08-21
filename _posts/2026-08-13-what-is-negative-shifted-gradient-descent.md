@@ -45,7 +45,7 @@ NS-GD matters because these two questions have different feasible answers.
 
 ## The useful correction can sit at the pole
 
-Consider an overparameterized head–tail model. A signal-bearing head has population scale \(\lambda_h\). The tail contains \(d_T\) individually weak directions, each with scale \(\lambda_T\). If \(\gamma_T=d_T/n\), their aggregate sample-space contribution behaves approximately like the scalar floor
+<p>Consider an overparameterized head–tail model. A signal-bearing head has population scale \(\lambda_h\). The tail contains \(d_T\) individually weak directions, each with scale \(\lambda_T\). If \(\gamma_T=d_T/n\), their aggregate sample-space contribution behaves approximately like the scalar floor</p>
 
 <div class="blog-equation">
 \[
@@ -71,7 +71,7 @@ t_\star=\frac{1}{\lambda_h}.
 \]
 </div>
 
-Why is this striking? The observed head location is also \(a+\lambda_h\). Thus the useful signed level satisfies \(\nu_\star=\mu_h\): it is placed exactly where the negative-ridge endpoint
+<p>Why is this striking? The observed head location is also \(a+\lambda_h\). Thus the useful signed level satisfies \(\nu_\star=\mu_h\): it is placed exactly where the negative-ridge endpoint</p>
 
 <div class="blog-equation">
 \[
@@ -99,11 +99,11 @@ a-2\sqrt{a\lambda_T},
 \]
 </div>
 
-well below \(\nu_\star=a+\lambda_h\). The desired correction is therefore not merely difficult to reach by negative ridge. It lies outside the stable endpoint class, and in the ideal model its target head mode is the endpoint pole itself.
+<p>well below \(\nu_\star=a+\lambda_h\). The desired correction is therefore not merely difficult to reach by negative ridge. It lies outside the stable endpoint class, and in the ideal model its target head mode is the endpoint pole itself.</p>
 
 ## A closed-form inverse is not necessarily a stable solution
 
-There is an important precision here. If \(\nu\) is above \(\widehat\mu_{\min}^{+}\) but does not equal an empirical eigenvalue exactly, one may still be able to write the algebraic expression
+<p>There is an important precision here. If \(\nu\) is above \(\widehat\mu_{\min}^{+}\) but does not equal an empirical eigenvalue exactly, one may still be able to write the algebraic expression</p>
 
 <div class="blog-equation">
 \[
@@ -111,7 +111,7 @@ There is an important precision here. If \(\nu\) is above \(\widehat\mu_{\min}^{
 \]
 </div>
 
-on the empirical row space. But this does not make it a stable negative-ridge endpoint. Directions with \(\mu<\nu\) have negative curvature, the quadratic objective is not bounded below along those directions, and gradient dynamics grow instead of converging. Near \(\mu=\nu\), the rational inverse is also arbitrarily sensitive; at equality, it is undefined.
+<p>on the empirical row space. But this does not make it a stable negative-ridge endpoint. Directions with \(\mu<\nu\) have negative curvature, the quadratic objective is not bounded below along those directions, and gradient dynamics grow instead of converging. Near \(\mu=\nu\), the rational inverse is also arbitrarily sensitive; at equality, it is undefined.</p>
 
 So “the inverse can be written” and “the estimator can be reached as a stable regularized solution” are different statements. Beyond the endpoint wall, the former may hold away from exact poles; the latter does not.
 
@@ -140,7 +140,7 @@ f_{\nu,t}(\nu)=\nu t.
 \]
 </div>
 
-The endpoint pole is removable at every finite time. At the common-spike choice \((\nu_\star,t_\star)\),
+<p>The endpoint pole is removable at every finite time. At the common-spike choice \((\nu_\star,t_\star)\),</p>
 
 <div class="blog-equation">
 \[
@@ -163,9 +163,9 @@ For an interactive version of this filter and a separate illustration of the Mar
 
 ## The path is the statistical object
 
-Once we stop treating iteration as merely a numerical approximation to a closed-form answer, the role of NS-GD becomes clearer. The signed level \(\nu\) chooses a correction scale that a stable endpoint may be unable to access. The stopping time \(t\) limits how long the lower spectrum is exposed to the noncontractive dynamics.
+<p>Once we stop treating iteration as merely a numerical approximation to a closed-form answer, the role of NS-GD becomes clearer. The signed level \(\nu\) chooses a correction scale that a stable endpoint may be unable to access. The stopping time \(t\) limits how long the lower spectrum is exposed to the noncontractive dynamics.</p>
 
-Together, these two parameters create **mixed-sign spectral regularization**. The sign refers to the displacement from ridgeless regression, \(f_{\nu,t}(\mu)-1\): selected leading modes can be anti-shrunk above one, while lower modes remain below one or exposure-controlled. A single stable negative-ridge endpoint cannot produce this leading-prefix shape; its amplification instead grows toward its lower-spectrum pole.
+<p>Together, these two parameters create <strong>mixed-sign spectral regularization</strong>. The sign refers to the displacement from ridgeless regression, \(f_{\nu,t}(\mu)-1\): selected leading modes can be anti-shrunk above one, while lower modes remain below one or exposure-controlled. A single stable negative-ridge endpoint cannot produce this leading-prefix shape; its amplification instead grows toward its lower-spectrum pole.</p>
 
 This does not mean that every unstable trajectory is useful. The recovered-signal gain must exceed the variance and lower-spectrum exposure price. In practice, NS-GD evaluates a finite grid of signed levels and stopping times and uses validation to choose among finite iterates. Discrete NS-GD is the controlled finite-step implementation; the smooth formula above describes its continuous-time geometry.
 
