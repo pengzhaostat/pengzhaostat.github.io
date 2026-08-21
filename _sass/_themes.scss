@@ -4,18 +4,18 @@
 // that reads them (navbar background, borders, cards, footer, callout blocks).
 //
 // Values below are the al_folio_core defaults, with ONLY the accent tokens
-// changed from the stock purple to a formal blue:
+// changed from the stock purple to a saturated reference blue:
 //   --global-theme-color / --global-hover-color (both palettes) and the light
 //   --global-code-bg-color tint. Keep the rest in sync if the gem changes.
 
 :root {
   color-scheme: light;
   --global-bg-color: #ffffff;
-  --global-code-bg-color: rgba(21, 101, 192, 0.06); // accent tint (was purple)
+  --global-code-bg-color: rgba(0, 0, 255, 0.06); // accent tint (was purple)
   --global-text-color: #000000;
   --global-text-color-light: #828282;
-  --global-theme-color: #1565c0; // ACCENT: purple -> blue
-  --global-hover-color: #0d47a1; // ACCENT hover: darker blue
+  --global-theme-color: #0000ff; // ACCENT: exact reference blue
+  --global-hover-color: #0000cc; // ACCENT hover: darker blue
   --global-hover-text-color: #ffffff;
   --global-footer-bg-color: #1c1c1d;
   --global-footer-text-color: #e8e8e8;
