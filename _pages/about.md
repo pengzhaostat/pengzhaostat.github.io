@@ -37,7 +37,7 @@ My research develops a theory of **deattenuation and anti-shrinkage**. I study w
   <p>One current project studies a Marchenko–Pastur pole barrier that constrains stable negative-ridge endpoints in overparameterized regression. A new <a href="{{ '/research/#negative-shifted-highlight' | relative_url }}">research highlight</a> explains how finite-time <strong>negative-shifted gradient descent</strong> passes smoothly through the would-be pole and creates mixed-sign spectral regularization relative to ridgeless regression.</p>
 </aside>
 
-Before joining Delaware, I was a postdoctoral researcher in Statistics at Texas A&M University. I received my Ph.D. in Statistics from Florida State University, advised by Yiyuan She and Yun Yang.
+Before joining Delaware, I was a postdoctoral researcher in Statistics at Texas A&M University, where I worked with Bani K. Mallick, Anirban Bhattacharya, and Debdeep Pati. I received my Ph.D. in Statistics from Florida State University, advised by Yiyuan She and Yun Yang.
 
 My research is currently supported in part by Microsoft Research through the **Graph Machine Learning** project, where I serve as a co-PI.
 
