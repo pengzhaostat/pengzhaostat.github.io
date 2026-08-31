@@ -12,7 +12,7 @@ nav_order: 4
 
 - **STAT 675 — Logistic Regression**, Spring 2026
 - **STAT 602 — Mathematical Statistics**, Spring 2024–2026
-- **STAT 601 — Probability Theory for Operations Research and Statistics**, Fall 2024
+- **STAT 601 — Probability Theory for Operations Research and Statistics**, Fall 2024; Fall 2026
 - **STAT 611 — Regression Analysis**, Fall 2023
 
 ## Texas A&M University
