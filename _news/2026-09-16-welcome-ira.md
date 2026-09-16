@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Welcome to our research group, **Ira Snahoshchenko**!
+Welcome **Ira** to our research group!
