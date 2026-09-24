@@ -10,7 +10,7 @@ nav_order: 3
 
 - **[Nischal Subedi](https://nischal1011.github.io/)** — Ph.D. candidate, Department of Applied Economics and Statistics, University of Delaware
 - **Linh Cao** — Ph.D. candidate, Department of Mathematics, University of Houston
-- **Ira Snahoshchenko**
+- **Ira Snahoshchenko** — M.S. student, Department of Applied Economics and Statistics, University of Delaware
 
 ## Previous mentees
 
