@@ -9,10 +9,10 @@ last_name: Zhao
 contact_note: >
   The best way to reach me is by email.
 description: >
-  Peng Zhao is an Assistant Professor of Statistics at the University of Delaware working on high-dimensional statistics, statistical learning, network data, and scalable Bayesian inference.
+  Peng Zhao is an Assistant Professor at the University of Delaware studying deattenuation and anti-shrinkage in high-dimensional statistics, including negative-shifted gradient descent.
 footer_text: >
   Built with <a href="https://github.com/alshedivat/al-folio">al-folio</a> and hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
-keywords: statistics, machine learning, high-dimensional statistics, Bayesian inference, network data
+keywords: High-dimensional statistics; implicit/algorithmic regularization; deattenuation and anti-shrinkage; network/graph data analysis; multivariate statistics; negative-shifted gradient descent
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: Σ
 

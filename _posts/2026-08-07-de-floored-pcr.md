@@ -14,6 +14,7 @@ tags:
   - anti-shrinkage
 categories:
   - research
+display_tags: [deattenuation, inverse-problems, spectral-regularization]
 giscus_comments: false
 ---
 

@@ -12,6 +12,7 @@ tags:
   - anti-shrinkage
 categories:
   - research
+display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization]
 giscus_comments: false
 ---
 

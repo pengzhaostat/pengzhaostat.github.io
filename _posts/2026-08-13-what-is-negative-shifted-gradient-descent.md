@@ -15,6 +15,7 @@ tags:
   - anti-shrinkage
 categories:
   - research
+display_tags: [anti-shrinkage, gradient-descent, spectral-regularization]
 giscus_comments: false
 ---
 

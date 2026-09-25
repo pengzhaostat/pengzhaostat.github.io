@@ -32,7 +32,8 @@ pagination:
     {% for post in postlist %}
       {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
       {% assign year = post.date | date: "%Y" %}
-      {% assign tags = post.tags | join: "" %}
+      {% assign display_tags = post.display_tags | default: post.tags %}
+      {% assign tags = display_tags | join: "" %}
 
       <li>
         <h3><a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
@@ -45,7 +46,7 @@ pagination:
           <a href="{{ year | prepend: '/blog/' | relative_url }}"><i class="fa-solid fa-calendar fa-sm"></i> {{ year }}</a>
           {% if tags != "" %}
             &nbsp; &middot; &nbsp;
-            {% for tag in post.tags %}
+            {% for tag in display_tags limit: 3 %}
               <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"><i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>{% unless forloop.last %}&nbsp;{% endunless %}
             {% endfor %}
           {% endif %}
