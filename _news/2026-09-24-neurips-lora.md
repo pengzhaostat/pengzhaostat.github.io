@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Our paper [When Does Subspace Direction Matter for LoRA? Regime Analysis of the Magnitude Principle in Few-Shot Adaptation](https://openreview.net/forum?id=9lfZA1MK8L) has been accepted to **NeurIPS 2026**. Congratulations to [Nischal](https://nischal1011.github.io/)!
+Our paper When Does Subspace Direction Matter for LoRA? Regime Analysis of the Magnitude Principle in Few-Shot Adaptation has been accepted to **NeurIPS 2026**. Congratulations to [Nischal](https://nischal1011.github.io/)!
