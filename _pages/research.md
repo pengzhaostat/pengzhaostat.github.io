@@ -126,12 +126,4 @@ High-dimensional procedures regularize not only through explicit penalties, but 
 
 Many modern datasets describe relationships rather than independent observations. My work develops latent-space, covariate-assisted, dynamic, and spatial models for networks, with an emphasis on uncertainty quantification, robustness, and interpretable structure.
 
-## Scalable Bayesian inference
-
-I develop variational and approximate Bayesian methods for models where conventional posterior computation is too costly. The goal is to pair computational scalability with rigorous statistical guarantees.
-
-## Multivariate and nonparametric Bayes
-
-I am also interested in shrinkage priors, graphical models, dimension reduction, and Bayesian models that adapt to complex dependence without imposing unnecessarily rigid parametric structure.
-
 <script src="{{ '/assets/js/research-highlight.js' | relative_url }}" defer></script>

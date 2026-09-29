@@ -11,7 +11,6 @@ tags:
   - spectral-regularization
   - gradient-descent
   - spectrum-crossing
-  - deattenuation
   - anti-shrinkage
 categories:
   - research

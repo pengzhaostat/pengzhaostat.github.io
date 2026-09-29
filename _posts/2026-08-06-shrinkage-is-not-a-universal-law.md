@@ -8,7 +8,6 @@ tags:
   - machine-learning
   - high-dimensional-statistics
   - spectral-regularization
-  - deattenuation
   - anti-shrinkage
 categories:
   - research

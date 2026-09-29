@@ -9,12 +9,10 @@ tags:
   - high-dimensional-statistics
   - random-matrix-theory
   - spectral-regularization
-  - inverse-problems
-  - deattenuation
   - anti-shrinkage
 categories:
   - research
-display_tags: [deattenuation, inverse-problems, spectral-regularization]
+display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization]
 giscus_comments: false
 ---
 
