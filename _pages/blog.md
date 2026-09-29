@@ -46,8 +46,14 @@ pagination:
           <a href="{{ year | prepend: '/blog/' | relative_url }}"><i class="fa-solid fa-calendar fa-sm"></i> {{ year }}</a>
           {% if tags != "" %}
             &nbsp; &middot; &nbsp;
-            {% for tag in display_tags limit: 3 %}
-              <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"><i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>{% unless forloop.last %}&nbsp;{% endunless %}
+            {% for tag in display_tags limit: 4 %}
+              {% assign tag_label = tag %}
+              {% if tag == 'pcr' %}
+                {% assign tag_label = 'PCR' %}
+              {% elsif tag == 'ns-gd' %}
+                {% assign tag_label = 'NS-GD' %}
+              {% endif %}
+              <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"><i class="fa-solid fa-hashtag fa-sm"></i> {{ tag_label }}</a>{% unless forloop.last %}&nbsp;{% endunless %}
             {% endfor %}
           {% endif %}
         </p>

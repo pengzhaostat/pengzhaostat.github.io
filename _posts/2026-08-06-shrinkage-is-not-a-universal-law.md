@@ -9,9 +9,10 @@ tags:
   - high-dimensional-statistics
   - spectral-regularization
   - anti-shrinkage
+  - bias-variance-tradeoff
 categories:
   - research
-display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization]
+display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization, bias-variance-tradeoff]
 giscus_comments: false
 ---
 

@@ -12,9 +12,10 @@ tags:
   - gradient-descent
   - spectrum-crossing
   - anti-shrinkage
+  - ns-gd
 categories:
   - research
-display_tags: [anti-shrinkage, gradient-descent, spectral-regularization]
+display_tags: [anti-shrinkage, gradient-descent, spectral-regularization, ns-gd]
 giscus_comments: false
 ---
 

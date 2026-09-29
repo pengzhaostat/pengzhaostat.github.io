@@ -10,9 +10,10 @@ tags:
   - random-matrix-theory
   - spectral-regularization
   - anti-shrinkage
+  - pcr
 categories:
   - research
-display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization]
+display_tags: [anti-shrinkage, high-dimensional-statistics, spectral-regularization, pcr]
 giscus_comments: false
 ---
 
